@@ -16,4 +16,17 @@ public class UserDataAccessRepository implements  UserDao{
         dbRecordUsers.add(new User(id,user.getFirstName(), user.getLastName(),user.getUserName(), user.getEmail(), user.getPassword()));
         return 1;
     }
+
+
+    //TODO: getAllUsers to list all users as a list
+    @Override
+    public List<User> getAllUsers() {
+        return dbRecordUsers;
+    }
+
+    //TODO: deleteUser to delete User via id
+
+
+    //TODO: updateUser to update properties of User
+
 }
