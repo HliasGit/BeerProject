@@ -35,4 +35,6 @@ public class UserService {
     public int deleteUserById (UUID id) { return userDao.deleteUserById(id);};
 
     public int updateUserById (UUID id, User user) { return userDao.updateUserById(id, user);}
+
+    public boolean isAdminById (UUID id) { return userDao.isAdminById(id);}
 }

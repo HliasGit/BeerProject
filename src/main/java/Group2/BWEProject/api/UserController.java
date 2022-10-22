@@ -2,7 +2,6 @@ package Group2.BWEProject.api;
 
 import Group2.BWEProject.model.User;
 import Group2.BWEProject.service.UserService;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,4 +39,7 @@ public class UserController {
 
     @PutMapping(path = "{id}")
     public int updateUserById(@PathVariable("id") UUID id, @RequestBody User user) { return userService.updateUserById(id, user);}
+
+    @GetMapping(path="/admin/{id}")
+    public boolean isAdminById(@PathVariable("id") UUID id){ return userService.isAdminById(id);}
 }

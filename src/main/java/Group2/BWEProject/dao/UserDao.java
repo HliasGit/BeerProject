@@ -3,7 +3,6 @@ package Group2.BWEProject.dao;
 import Group2.BWEProject.model.User;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface UserDao {
@@ -22,5 +21,7 @@ public interface UserDao {
     int deleteUserById(UUID id);
 
     int updateUserById(UUID id, User user);
+
+    boolean isAdminById(UUID id);
 
 }

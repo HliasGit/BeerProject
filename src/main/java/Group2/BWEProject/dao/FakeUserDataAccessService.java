@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Repository("fakeDao")
@@ -15,7 +14,7 @@ public class FakeUserDataAccessService implements UserDao{
 
     @Override
     public int insertUser(UUID id, User user) {
-        DB.add(new User(id, user.getName()));
+        DB.add(new User(id, user.getFirstName(), user.getLastName(), user.getUserName(), user.getEmail(), user.getPassword(), user.getAdmin()));
         return 1;
     }
 
@@ -55,6 +54,16 @@ public class FakeUserDataAccessService implements UserDao{
             }
         }
         return 0;
+    }
+
+    @Override
+    public boolean isAdminById(UUID id) {
+        for (User user:DB){
+            if (user.getId().equals(id)){
+                return user.getAdmin();
+            }
+        }
+        return false;
     }
 
 }
