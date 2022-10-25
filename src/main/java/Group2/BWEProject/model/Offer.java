@@ -1,7 +1,5 @@
 package Group2.BWEProject.model;
 
-import Group2.BWEProject.dao.Auction;
-
 import java.util.UUID;
 
 public class Offer {
