@@ -14,7 +14,7 @@ public class AuctionDataAccessService implements AuctionDao {
 
     @Override
     public int insertAuction(UUID id, Auction auction) {
-        DBAuction.add(new Auction(id, auction.getDateOfStart(), auction.getDateOfEnd(), auction.getBuyer(), auction.getSeller(), auction.isActive()));
+        DBAuction.add(new Auction(id, auction.getDateOfStart(), auction.getDateOfEnd(), auction.getBuyerId(), auction.getSellerId(), auction.isActive()));
         return 1;
     }
 

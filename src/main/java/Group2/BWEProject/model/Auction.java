@@ -9,17 +9,17 @@ public class Auction {
     private final Date dateOfStart;
     private final Date dateOfEnd;
 
-    private final User buyer;
-    private final User seller;
+    private final UUID buyerId;
+    private final UUID sellerId;
 
     private final Boolean isActive;
 
-    public Auction(UUID id, Date dateOfStart, Date dateOfEnd, User buyer, User seller, boolean isActive) {
+    public Auction(UUID id, Date dateOfStart, Date dateOfEnd, UUID buyerId, UUID sellerId, boolean isActive) {
         this.id = id;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;
-        this.buyer = buyer;
-        this.seller = seller;
+        this.buyerId = buyerId;
+        this.sellerId = sellerId;
         this.isActive = isActive;
     }
 
@@ -35,12 +35,12 @@ public class Auction {
         return dateOfEnd;
     }
 
-    public User getBuyer() {
-        return buyer;
+    public UUID getBuyerId() {
+        return buyerId;
     }
 
-    public User getSeller() {
-        return seller;
+    public UUID getSellerId() {
+        return sellerId;
     }
 
     public boolean isActive() {
