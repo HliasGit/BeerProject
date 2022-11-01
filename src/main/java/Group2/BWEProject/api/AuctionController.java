@@ -28,14 +28,20 @@ public class AuctionController {
     }
 
     @GetMapping
-    public List<Auction> selectAllAuctions(){return auctionService.selectAllAuctions();}
+    public ResponseEntity<List<Auction>> selectAllAuctions(){
+        return new ResponseEntity<>(auctionService.selectAllAuctions(),HttpStatus.FOUND);
+    }
 
     @GetMapping(path="/{id}")
-    public Optional<Auction> selectAuctionById(@PathVariable("id") UUID id){return auctionService.selectAuctionById(id);}
+    public ResponseEntity<Optional<Auction>>selectAuctionById(@PathVariable("id") UUID id){
+        return new ResponseEntity(auctionService.selectAuctionById(id),HttpStatus.FOUND);
+    }
 
     @PutMapping(path = "/{id}")
-    public Auction updateAuctionById(@PathVariable("id") UUID id, @RequestBody Auction auction) {return auctionService.updateAuctionById(id, auction);}
+    public ResponseEntity<Auction> updateAuctionById(@PathVariable("id") UUID id, @RequestBody Auction auction) {
+        return new ResponseEntity<>(auctionService.updateAuctionById(id, auction),HttpStatus.CREATED);}
 
     @DeleteMapping(path="/{id}")
-    public void deleteAuctionById(@PathVariable("id") UUID id) {auctionService.deleteAuctionById(id);}
+    public ResponseEntity<Boolean> deleteAuctionById(@PathVariable("id") UUID id) {
+        return new ResponseEntity<>(auctionService.deleteAuctionById(id),HttpStatus.OK);}
 }

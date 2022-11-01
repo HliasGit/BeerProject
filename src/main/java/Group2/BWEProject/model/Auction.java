@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
-
+@Table(name="TB_AUCTIONS")
 @Entity
 public class Auction {
     @Id

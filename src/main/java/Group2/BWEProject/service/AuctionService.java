@@ -35,8 +35,9 @@ public class AuctionService {
         return auctionDao.save(auction);
     }
 
-    public void deleteAuctionById(UUID id) {
+    public Boolean deleteAuctionById(UUID id) {
         auctionDao.deleteById(id);
+        return true;
     }
 
 }
