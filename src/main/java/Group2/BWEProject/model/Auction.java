@@ -1,31 +1,40 @@
 package Group2.BWEProject.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
+@Entity
 public class Auction {
 
-    private final UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    private final String title;
-    private final LocalDate dateOfStart;
-    private final LocalDate dateOfEnd;
+    private  String title;
+    private  LocalDate dateOfStart;
+    private  LocalDate dateOfEnd;
 
-    private final UUID buyerId;
-    private final UUID sellerId;
+    private  UUID buyerId;
+    private  UUID sellerId;
 
-    private final Boolean isActive;
+    private  Boolean isActive;
 
-
-    public Auction(UUID id, String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, boolean isActive) {
-        this.id = id;
+    public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean isActive) {
         this.title = title;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
         this.isActive = isActive;
+    }
+
+    public Auction() {
+
     }
 
     public UUID getId() {
