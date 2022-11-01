@@ -1,18 +1,16 @@
 package Group2.BWEProject.dao;
 
 import Group2.BWEProject.model.Auction;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 import java.util.UUID;
 
 
-public interface AuctionDao {
-
-    int insertAuction(UUID id, Auction auction);
+public interface AuctionDao  {
 
     default int addAuction(Auction auction){
-        UUID id = UUID.randomUUID();
-        return insertAuction(id, auction);
+        return addAuction(auction);
     }
 
     List<Auction> selectAllAuctions();

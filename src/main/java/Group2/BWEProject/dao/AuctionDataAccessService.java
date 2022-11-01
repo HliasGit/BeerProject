@@ -13,8 +13,8 @@ public class AuctionDataAccessService implements AuctionDao {
     private static List<Auction> DBAuction = new ArrayList<>();
 
     @Override
-    public int insertAuction(UUID id, Auction auction) {
-        DBAuction.add(new Auction(id, auction.getTitle(), auction.getDateOfStart(), auction.getDateOfEnd(), auction.getBuyerId(), auction.getSellerId(), auction.getActive()));
+    public int addAuction(Auction auction) {
+        DBAuction.add(new Auction(auction.getTitle(), auction.getDateOfStart(), auction.getDateOfEnd(), auction.getBuyerId(), auction.getSellerId(), auction.getActive()));
         return 1;
     }
 
@@ -37,7 +37,7 @@ public class AuctionDataAccessService implements AuctionDao {
     @Override
     public Auction selectAuctionByState(Boolean isActive) {
         for (Auction auction : DBAuction) {
-            if (auction.getActive() == true) {
+            if (auction.getActive()) {
                 return auction;
             }
         }
@@ -65,11 +65,5 @@ public class AuctionDataAccessService implements AuctionDao {
             }
         }
         return 0;
-    }
-
-    @Override
-    public int addAuction(Auction auction) {
-        DBAuction.add(auction);
-        return 1;
     }
 }
