@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Repository("fakeOfferDao")
-public class FakeOfferDataAccessService implements OfferDao {
+@Repository("offerDao")
+public class OfferDataAccessService implements OfferDao {
 
     private static List<Offer> DBOffers = new ArrayList<>();
 
