@@ -1,5 +1,8 @@
 package Group2.BWEProject.model;
 
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,14 +18,25 @@ public class Auction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @NonNull
     private  String title;
+
+    @NonNull
     private  LocalDate dateOfStart;
+
+    @NonNull
     private  LocalDate dateOfEnd;
 
+    @Nullable
     private  UUID buyerId;
+
+    @NonNull
     private  UUID sellerId;
 
+    @NonNull
     private  Boolean isActive;
+
+    //TODO:Add properties productID after Elay will merge his implementation of Product object
 
     public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean isActive) {
         this.title = title;
@@ -41,26 +55,29 @@ public class Auction {
         return id;
     }
 
-    public LocalDate getDateOfStart() {
-        return dateOfStart;
-    }
-
-    public LocalDate getDateOfEnd() {
-        return dateOfEnd;
-    }
-
-    public UUID getBuyerId() {
-        return buyerId;
-    }
-
-    public UUID getSellerId() {
-        return sellerId;
-    }
-
+    @NonNull
     public String getTitle() {
         return title;
     }
 
+    @NonNull
+    public LocalDate getDateOfStart() {
+        return dateOfStart;
+    }
+    @NonNull
+    public LocalDate getDateOfEnd() {
+        return dateOfEnd;
+    }
+
+    @Nullable
+    public UUID getBuyerId() {
+        return buyerId;
+    }
+    @NonNull
+    public UUID getSellerId() {
+        return sellerId;
+    }
+    @NonNull
     public Boolean getActive() {
         return isActive;
     }
