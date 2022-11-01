@@ -1,21 +1,26 @@
 package Group2.BWEProject.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
 public class Auction {
 
     private final UUID id;
-    private final Date dateOfStart;
-    private final Date dateOfEnd;
+
+    private final String title;
+    private final LocalDate dateOfStart;
+    private final LocalDate dateOfEnd;
 
     private final UUID buyerId;
     private final UUID sellerId;
 
     private final Boolean isActive;
 
-    public Auction(UUID id, Date dateOfStart, Date dateOfEnd, UUID buyerId, UUID sellerId, boolean isActive) {
+
+    public Auction(UUID id, String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, boolean isActive) {
         this.id = id;
+        this.title = title;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;
         this.buyerId = buyerId;
@@ -27,11 +32,11 @@ public class Auction {
         return id;
     }
 
-    public Date getDateOfStart() {
+    public LocalDate getDateOfStart() {
         return dateOfStart;
     }
 
-    public Date getDateOfEnd() {
+    public LocalDate getDateOfEnd() {
         return dateOfEnd;
     }
 
@@ -43,7 +48,11 @@ public class Auction {
         return sellerId;
     }
 
-    public boolean isActive() {
+    public String getTitle() {
+        return title;
+    }
+
+    public Boolean getActive() {
         return isActive;
     }
 
