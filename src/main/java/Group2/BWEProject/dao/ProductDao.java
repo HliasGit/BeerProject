@@ -1,40 +1,26 @@
 package Group2.BWEProject.dao;
 
+import Group2.BWEProject.model.Offer;
 import Group2.BWEProject.model.Product;
-
+import Group2.BWEProject.model.User;
 import java.util.List;
 import java.util.UUID;
 
 public interface ProductDao {
     //* methods for handling object User and Database *//
-    int insertProduct(UUID id, Product product); //int??
+    int insertProduct(UUID id, Product product); //why int??
     //id will be generated. Users are not supposed to fill it by themselves
-    default int insertProduct(Product product){
-        UUID id = UUID.randomUUID();
-        return  insertProduct(id, product);
-
-        //TODO: deleteUser => delete User via id
-        int deleteProduct(Product product);
-        default int deleteProduct(Product product){
-            return deleteProduct(product);
-        }
-        //TODO: getAllProducts => select all products as a list
-        List<Product> showAllProducts(){
-//            listAllProducts = new List <Product>;
-            return listAllProducts(<product>);
-        }
-
-        //TODO: updateProduct => update properties of a product
-        Product updateProduct(Product product){
-            return updateProduct(product);
-        }
+    default int insertProduct(Product product) {
+        UUID id = UUID.randomUUID(); //COUNTER ID
+        return insertProduct(id, product);
     }
+    //show all products of specific user
+    List<Product> selectAllProducts();
+    Product selectProductById(UUID id);
+    int deleteProductById(UUID id);
+    int updateProductById(UUID id, Product product);
 
-
-
-
-    //TODO: updateUser => update properties of User
-
-
-
+    //TODO: getAllProducts => show all active products that are on auction
+    //in auction class
 }
+
