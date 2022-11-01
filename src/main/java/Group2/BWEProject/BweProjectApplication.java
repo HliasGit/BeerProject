@@ -15,8 +15,9 @@ public class BweProjectApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext configurableApplicationContext =
 		SpringApplication.run(BweProjectApplication.class, args);
-		AuctionDao auctionRepository = configurableApplicationContext.getBean(AuctionDao.class);
-		Auction auctionDbRecord = new Auction("ActionOne", LocalDate.now(),LocalDate.of(2022,11,30), UUID.randomUUID(),UUID.randomUUID(),true);
+		AuctionDao auctionRepository =
+				configurableApplicationContext.getBean(AuctionDao.class);
+		Auction auctionDbRecord = new Auction("Test1", LocalDate.now(),LocalDate.of(2022,11,30), UUID.randomUUID(),UUID.randomUUID(),true);
 
 		//persist into DB
 		auctionRepository.save(auctionDbRecord);

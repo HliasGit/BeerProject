@@ -1,50 +1,40 @@
 package Group2.BWEProject.model;
 
 import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 public class Auction {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @NonNull
-    private  String title;
-
-    @NotBlank(message = "Name is mandatory")
-    private  LocalDate dateOfStart;
+    private String title;
 
     @NonNull
-    private  LocalDate dateOfEnd;
-
-    @Nullable
-    private  UUID buyerId;
-
+    private LocalDate dateOfStart;
     @NonNull
-    private  UUID sellerId;
+    private LocalDate dateOfEnd;
 
+    private UUID buyerId;
     @NonNull
-    private  Boolean isActive;
+    private UUID sellerId;
+    @NonNull
+    private Boolean active;
 
     //TODO:Add properties productID after Elay will merge his implementation of Product object
 
-    public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean isActive) {
+    public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean active) {
         this.title = title;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
-        this.isActive = isActive;
+        this.active = active;
     }
 
     public Auction() {
@@ -54,13 +44,11 @@ public class Auction {
     public UUID getId() {
         return id;
     }
-
     @NonNull
     public String getTitle() {
         return title;
     }
-
-    @NotBlank
+    @NonNull
     public LocalDate getDateOfStart() {
         return dateOfStart;
     }
@@ -69,7 +57,6 @@ public class Auction {
         return dateOfEnd;
     }
 
-    @Nullable
     public UUID getBuyerId() {
         return buyerId;
     }
@@ -79,7 +66,7 @@ public class Auction {
     }
     @NonNull
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
 }
