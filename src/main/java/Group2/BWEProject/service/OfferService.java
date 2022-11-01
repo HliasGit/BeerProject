@@ -14,7 +14,7 @@ public class OfferService {
     private final OfferDao offerDao;
 
     @Autowired
-    public OfferService(@Qualifier("fakeOfferDao") OfferDao offerDao) {
+    public OfferService(@Qualifier("offerDao") OfferDao offerDao) {
         this.offerDao = offerDao;
     }
 
