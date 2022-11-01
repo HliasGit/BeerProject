@@ -57,3 +57,7 @@ public class User {
         this.admin = admin;
     }
 }
+//=======
+//    }
+//}
+//>>>>>>> b005505 (springboot sctructure & POST endpoint for USER object)

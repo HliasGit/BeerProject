@@ -7,7 +7,7 @@ public class Offer {
     private final UUID id;
     private final double offeringPrice;
     private final User user;
-    private final Auction auction;
+    private final Product auction;
     private boolean accepted;
 
     public UUID getId() {
@@ -22,7 +22,7 @@ public class Offer {
         return user;
     }
 
-    public Auction getAuction() {
+    public Product getAuction() {
         return auction;
     }
 
@@ -30,7 +30,7 @@ public class Offer {
         return accepted;
     }
 
-    public Offer(UUID id, double offeringPrice, User user, Auction auction, boolean accepted) {
+    public Offer(UUID id, double offeringPrice, User user, Product auction, boolean accepted) {
         this.id = id;
         this.offeringPrice = offeringPrice;
         this.user = user;
