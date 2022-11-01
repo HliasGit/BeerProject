@@ -1,25 +1,44 @@
 package Group2.BWEProject.model;
 
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
+@Entity
 public class Auction {
 
-    private final UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    private final String title;
-    private final LocalDate dateOfStart;
-    private final LocalDate dateOfEnd;
+    @NonNull
+    private  String title;
 
-    private final UUID buyerId;
-    private final UUID sellerId;
+    @NotBlank(message = "Name is mandatory")
+    private  LocalDate dateOfStart;
 
-    private final Boolean isActive;
+    @NonNull
+    private  LocalDate dateOfEnd;
 
+    @Nullable
+    private  UUID buyerId;
 
-    public Auction(UUID id, String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, boolean isActive) {
-        this.id = id;
+    @NonNull
+    private  UUID sellerId;
+
+    @NonNull
+    private  Boolean isActive;
+
+    //TODO:Add properties productID after Elay will merge his implementation of Product object
+
+    public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean isActive) {
         this.title = title;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;
@@ -28,30 +47,37 @@ public class Auction {
         this.isActive = isActive;
     }
 
+    public Auction() {
+
+    }
+
     public UUID getId() {
         return id;
     }
 
-    public LocalDate getDateOfStart() {
-        return dateOfStart;
-    }
-
-    public LocalDate getDateOfEnd() {
-        return dateOfEnd;
-    }
-
-    public UUID getBuyerId() {
-        return buyerId;
-    }
-
-    public UUID getSellerId() {
-        return sellerId;
-    }
-
+    @NonNull
     public String getTitle() {
         return title;
     }
 
+    @NotBlank
+    public LocalDate getDateOfStart() {
+        return dateOfStart;
+    }
+    @NonNull
+    public LocalDate getDateOfEnd() {
+        return dateOfEnd;
+    }
+
+    @Nullable
+    public UUID getBuyerId() {
+        return buyerId;
+    }
+    @NonNull
+    public UUID getSellerId() {
+        return sellerId;
+    }
+    @NonNull
     public Boolean getActive() {
         return isActive;
     }

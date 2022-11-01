@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequestMapping("api/v1/auction")
@@ -28,11 +29,11 @@ public class AuctionController {
     public List<Auction> selectAllAuctions(){return auctionService.selectAllAuctions();};
 
     @GetMapping(path="/{id}")
-    public Auction selectAuctionById(@PathVariable("id") UUID id){return auctionService.selectAuctionById(id);};
+    public Optional<Auction> selectAuctionById(@PathVariable("id") UUID id){return auctionService.selectAuctionById(id);};
 
     @PutMapping(path = "/{id}")
-    public int updateAuctionById(@PathVariable("id") UUID id, @RequestBody Auction auction) {return auctionService.updateAuctionById(id, auction);};
+    public Auction updateAuctionById(@PathVariable("id") UUID id, @RequestBody Auction auction) {return auctionService.updateAuctionById(id, auction);};
 
     @DeleteMapping(path="/{id}")
-    public int deleteAuctionById(@PathVariable("id") UUID id) {return auctionService.deleteAuctionById(id);};
+    public void deleteAuctionById(@PathVariable("id") UUID id) {auctionService.deleteAuctionById(id);};
 }

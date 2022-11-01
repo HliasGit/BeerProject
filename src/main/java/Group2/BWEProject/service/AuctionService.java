@@ -2,12 +2,12 @@ package Group2.BWEProject.service;
 
 import Group2.BWEProject.dao.AuctionDao;
 import Group2.BWEProject.model.Auction;
-import Group2.BWEProject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,33 +19,24 @@ public class AuctionService {
         this.auctionDao = auctionDao;
     }
 
-    public int addAuction(Auction auction) {
-        return auctionDao.addAuction(auction);
+    public Auction addAuction(Auction auction) {
+        return  auctionDao.save(auction);
     }
 
     public List<Auction> selectAllAuctions() {
-        return auctionDao.selectAllAuctions();
+        return (List<Auction>) auctionDao.findAll();
     }
 
-    ;
-
-    public Auction selectAuctionById(UUID id) {
-        return auctionDao.selectAuctionById(id);
+    public Optional<Auction> selectAuctionById(UUID id) {
+        return auctionDao.findById(id);
     }
 
-    ;
-
-    public int updateAuctionById(UUID id, Auction auction) {
-        return auctionDao.updateAuctionById(id, auction);
+    public Auction updateAuctionById(UUID id, Auction auction) {
+        return auctionDao.save(auction);
     }
 
-    ;
-
-    public int deleteAuctionById(UUID id) {
-        return auctionDao.deleteAuctionById(id);
+    public void deleteAuctionById(UUID id) {
+        auctionDao.deleteById(id);
     }
-
-    ;
-
 
 }

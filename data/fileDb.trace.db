@@ -1,0 +1,6 @@
+2022-11-01 08:44:33 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]selet * from auction"; expected "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
+selet * from auction [42001-214]
+2022-11-01 11:58:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTION" not found; SQL statement:
+select * from aution [42102-214]
