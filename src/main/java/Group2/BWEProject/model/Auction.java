@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -21,7 +21,7 @@ public class Auction {
     @NonNull
     private  String title;
 
-    @NonNull
+    @NotBlank(message = "Name is mandatory")
     private  LocalDate dateOfStart;
 
     @NonNull
@@ -60,7 +60,7 @@ public class Auction {
         return title;
     }
 
-    @NonNull
+    @NotBlank
     public LocalDate getDateOfStart() {
         return dateOfStart;
     }
