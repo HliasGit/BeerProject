@@ -27,25 +27,16 @@ public class AuctionService {
         return (List<Auction>) auctionDao.findAll();
     }
 
-    ;
-
     public Optional<Auction> selectAuctionById(UUID id) {
         return auctionDao.findById(id);
     }
-
-    ;
 
     public Auction updateAuctionById(UUID id, Auction auction) {
         return auctionDao.save(auction);
     }
 
-    ;
-
     public void deleteAuctionById(UUID id) {
         auctionDao.deleteById(id);
     }
-
-    ;
-
 
 }
