@@ -8,7 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
-@Table(name="TB_AUCTIONS")
+
+@Table(name = "TB_AUCTIONS")
 @Entity
 public class Auction {
     @Id
@@ -34,16 +35,6 @@ public class Auction {
     private String category;
 
 
-    //TODO:Add properties productID after Elay will merge his implementation of Product object
-
-    public UUID getProductId() {
-        return productId;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
     public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean active, UUID productId, String category) {
         this.title = title;
         this.dateOfStart = dateOfStart;
@@ -52,7 +43,7 @@ public class Auction {
         this.sellerId = sellerId;
         this.active = active;
         this.productId = productId;
-        this.category=category;
+        this.category = category;
     }
 
     public Auction() {
@@ -62,14 +53,17 @@ public class Auction {
     public UUID getId() {
         return id;
     }
-    @NonNull
+
+    @NotBlank
     public String getTitle() {
         return title;
     }
+
     @NonNull
     public LocalDate getDateOfStart() {
         return dateOfStart;
     }
+
     @NonNull
     public LocalDate getDateOfEnd() {
         return dateOfEnd;
@@ -78,13 +72,25 @@ public class Auction {
     public UUID getBuyerId() {
         return buyerId;
     }
+
     @NonNull
     public UUID getSellerId() {
         return sellerId;
     }
+
     @NonNull
     public Boolean getActive() {
         return active;
+    }
+
+    @NonNull
+    public UUID getProductId() {
+        return productId;
+    }
+
+    @NonNull
+    public String getCategory() {
+        return category;
     }
 
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RequestMapping("api/v1/auction")
+@RequestMapping("api/v1/auctions")
 @RestController
 public class AuctionController {
 
@@ -22,24 +22,26 @@ public class AuctionController {
 
     @PostMapping
     public ResponseEntity<Auction> addAuction(@RequestBody Auction auction) {
-       return new ResponseEntity<>(auctionService.addAuction(auction), HttpStatus.CREATED);
+        return new ResponseEntity<>(auctionService.addAuction(auction), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Auction>> selectAllAuctions(){
-        return new ResponseEntity<>(auctionService.selectAllAuctions(),HttpStatus.FOUND);
+    public ResponseEntity<List<Auction>> selectAllAuctions() {
+        return new ResponseEntity<>(auctionService.selectAllAuctions(), HttpStatus.FOUND);
     }
 
-    @GetMapping(path="/{id}")
-    public ResponseEntity<Optional<Auction>>selectAuctionById(@PathVariable("id") UUID id){
-        return new ResponseEntity(auctionService.selectAuctionById(id),HttpStatus.FOUND);
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Optional<Auction>> selectAuctionById(@PathVariable("id") UUID id) {
+        return new ResponseEntity(auctionService.selectAuctionById(id), HttpStatus.FOUND);
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<Auction> updateAuctionById(@PathVariable("id") UUID id, @RequestBody Auction auction) {
-        return new ResponseEntity<>(auctionService.updateAuctionById(id, auction),HttpStatus.CREATED);}
+        return new ResponseEntity<>(auctionService.updateAuctionById(id, auction), HttpStatus.CREATED);
+    }
 
-    @DeleteMapping(path="/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<Boolean> deleteAuctionById(@PathVariable("id") UUID id) {
-        return new ResponseEntity<>(auctionService.deleteAuctionById(id),HttpStatus.OK);}
+        return new ResponseEntity<>(auctionService.deleteAuctionById(id), HttpStatus.OK);
+    }
 }
