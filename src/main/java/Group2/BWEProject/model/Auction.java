@@ -3,6 +3,9 @@ package Group2.BWEProject.model;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
 @Table(name="TB_AUCTIONS")
@@ -12,7 +15,8 @@ public class Auction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @NonNull
+    @NotBlank(message = "Auction title is mandatory")
+    @Size(min = 3, max = 14)
     private String title;
 
     @NonNull
@@ -26,15 +30,29 @@ public class Auction {
     @NonNull
     private Boolean active;
 
+    private UUID productId;
+    private String category;
+
+
     //TODO:Add properties productID after Elay will merge his implementation of Product object
 
-    public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean active) {
+    public UUID getProductId() {
+        return productId;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean active, UUID productId, String category) {
         this.title = title;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
         this.active = active;
+        this.productId = productId;
+        this.category=category;
     }
 
     public Auction() {
