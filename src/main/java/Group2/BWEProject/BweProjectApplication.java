@@ -12,16 +12,17 @@ import java.util.UUID;
 @SpringBootApplication
 public class BweProjectApplication {
 
-	public static void main(String[] args) {
-		ConfigurableApplicationContext configurableApplicationContext =
-		SpringApplication.run(BweProjectApplication.class, args);
-		AuctionDao auctionRepository =
-				configurableApplicationContext.getBean(AuctionDao.class);
-		Auction auctionDbRecord = new Auction("Test1", LocalDate.now(),LocalDate.of(2022,11,30), UUID.randomUUID(),UUID.randomUUID(),true, null, "wine");
+    public static void main(String[] args) {
+        ConfigurableApplicationContext configurableApplicationContext =
+                SpringApplication.run(BweProjectApplication.class, args);
 
-		//persist into DB
-		auctionRepository.save(auctionDbRecord);
-	}
+
+        AuctionDao auctionRepository =
+                configurableApplicationContext.getBean(AuctionDao.class);
+        Auction auctionDbRecord = new Auction("Test1", LocalDate.now(), LocalDate.of(2022, 11, 30), UUID.randomUUID(), UUID.randomUUID(), true, null, "wine");
+        //persist into DB
+        auctionRepository.save(auctionDbRecord);
+    }
 
 
 }

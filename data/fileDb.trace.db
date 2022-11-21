@@ -11,3 +11,6 @@ delete * from TB_AUCTIONS [42001-214]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select\000d\000a10 * [*]from TB_AUCTIONS"; SQL statement:
 select
 10 * from TB_AUCTIONS [42000-214]
+2022-11-21 15:26:08 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TB_ACTIONS" not found; SQL statement:
+select * from TB_ACTIONS [42102-214]
