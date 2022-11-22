@@ -3,12 +3,15 @@ package Group2.BWEProject.api;
 import Group2.BWEProject.model.User;
 import Group2.BWEProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-@RequestMapping("api/v1/user")
+@RequestMapping("api/v1/users")
 @RestController
 public class UserController {
 
@@ -20,26 +23,27 @@ public class UserController {
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
-        userService.addUser(user);
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<User> getAllUsers(){
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> selectAllUsers(){
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.FOUND);
     }
 
     @GetMapping(path = "/{id}")
-    public User getUserById(@PathVariable("id") UUID id){
-        return userService.getUserById(id);
+    public ResponseEntity<Optional<User>> selectUserById(@PathVariable("id") UUID id){
+        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "/{id}")
-    public int deleteUserById(@PathVariable("id") UUID id){ return userService.deleteUserById(id);}
+    public ResponseEntity<Boolean> deleteUserById(@PathVariable("id") UUID id){
+        return new ResponseEntity<Boolean>(userService.deleteUserById(id), HttpStatus.OK);
+    }
 
     @PutMapping(path = "{id}")
-    public int updateUserById(@PathVariable("id") UUID id, @RequestBody User user) { return userService.updateUserById(id, user);}
-
-    @GetMapping(path="/admin/{id}")
-    public boolean isAdminById(@PathVariable("id") UUID id){ return userService.isAdminById(id);}
-}
+    public ResponseEntity<User> updateUserById(@PathVariable("id") UUID id, @RequestBody User user) {
+        return new ResponseEntity<>(userService.updateUserById(id, user), HttpStatus.CREATED);
+    }
+   }

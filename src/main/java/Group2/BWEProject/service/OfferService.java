@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,13 +19,24 @@ public class OfferService {
         this.offerDao = offerDao;
     }
 
-    public List<Offer> selectAllOffers(){return offerDao.selectAllOffers();};
+    public List<Offer> selectAllOffers(){
+        return (List<Offer>) offerDao.findAll();
+    }
 
-    public Offer selectOfferById(UUID id){return offerDao.selectOfferById(id);};
+    public Optional<Offer> selectOfferById(UUID id){
+        return offerDao.findById(id);
+    }
 
-    public int deleteOfferById(UUID id){return offerDao.deleteOfferById(id);};
+    public Boolean deleteOfferById(UUID id){
+        offerDao.deleteById(id);
+        return true;
+    }
 
-    public int updateOfferById(UUID id, Offer offer){return offerDao.updateOfferById(id, offer);};
+    public Offer updateOfferById(UUID id, Offer offer){
+        return offerDao.save(offer);
+    }
 
-    public int addOffer(Offer offer) {return offerDao.addOffer(offer);};
+    public Offer addOffer(Offer offer) {
+        return offerDao.save(offer);
+    }
 }
