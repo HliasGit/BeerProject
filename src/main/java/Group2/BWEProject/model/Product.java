@@ -2,6 +2,7 @@ package Group2.BWEProject.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -13,9 +14,9 @@ public class Product{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @NotBlank (message = "username is mandatory")
-    @Size(min = 2, max = 15)
-    private String user;
+    @NotNull(message = "user id is mandatory")
+//    private String user;
+    private UUID userId;
 
     @NotBlank (message = "Name is mandatory")
     @Size(min = 2, max = 15)
@@ -25,16 +26,16 @@ public class Product{
     @Size(min = 2, max = 80)
     private String description;
     private String image; ///which type?
-    @NotBlank (message = "Minimum price is mandatory")
+    @NotNull (message = "Minimum price is mandatory")
     private Double minPrice;
-    @NotBlank (message = "Expected price is mandatory")
-    private Double expectedPrice; //bigDecimal?
-    @NotBlank(message = "Expected delivery time is mandatory")
+    @NotNull (message = "Expected price is mandatory")
+    private Double expectedPrice;
+    @NotNull(message = "Expected delivery time is mandatory")
     private Integer expectedDeliveryTimeInDays;
 //    private Boolean onAuction;  //Auction auction
-    public Product(String user, String name, String description, String image, Double minPrice,
+    public Product(UUID userId, String name, String description, String image, Double minPrice,
                    Double expectedPrice, Integer expectedDeliveryTimeInDays) {
-        this.user= user;
+        this.userId= userId;
         this.name = name;
         this.description = description;
         this.image = image;
@@ -48,10 +49,8 @@ public class Product{
     public UUID getId(){
         return id;
     }
-    @NotBlank
-    public String getUser() {
-        return user;
-    }
+    @NotNull
+    public UUID getUser() { return userId; }
     @NotBlank
     public String getName() {
         return name;
@@ -63,15 +62,15 @@ public class Product{
     public String getImage() {
         return image;
     }
-    @NotBlank
+    @NotNull
     public Double getMinPrice() {
         return minPrice;
     }
-    @NotBlank
+    @NotNull
     public Double getExpectedPrice() {
         return expectedPrice;
     }
-    @NotBlank
+    @NotNull
     public Integer getExpectedDeliveryTimeInDays() {
         return expectedDeliveryTimeInDays;
     }

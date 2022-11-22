@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RequestMapping("api/v1/product")
+@RequestMapping("api/v1/products")
 @RestController
 public class ProductController {
     private final ProductService productService;
