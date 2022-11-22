@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,18 +24,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
+    public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
         return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<User>> selectAllUsers(){
-        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.FOUND);
+        return new ResponseEntity<>(userService.selectAllUsers(), HttpStatus.FOUND);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<User>> selectUserById(@PathVariable("id") UUID id){
-        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.FOUND);
+        return new ResponseEntity<>(userService.selectUserById(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "/{id}")

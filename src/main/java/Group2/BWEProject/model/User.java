@@ -9,36 +9,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Table(name = "TB_USER")
+
+@Table(name = "TB_USERS")
 @Entity
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private final UUID id;
+    private UUID id;
 
-    @NotBlank
-    @Size(min=2, max=15)
-    private final String firstName;
+    @NotBlank(message = "First is mandatory")
+    @Size(min = 2, max = 15)
+    private String firstName;
 
-    @NotBlank
-    @Size(min=2, max=15)
-    private final String lastName;
+    @NotBlank(message = "Last name is mandatory")
+    @Size(min = 2, max = 15)
+    private String lastName;
 
-    @NotBlank
-    private final String email;
+    @NotBlank(message = "Email is mandatory")
+    @Email
+    private String email;
 
-    @NotBlank
-    @Size(min=8, max=15)
-    private final String password;
+    @NotBlank(message = "Password is mandatory")
+    @Size(min = 8, max = 15, message = "Password should be between 8 to 15 characters or numbers")
+    private String password;
 
-    @NotNull
-    private final Boolean admin;
+    @NotNull(message = "User role is mandatory")
+    private Boolean admin;
 
+    /* Getters prepared for next logic implementation */
     public UUID getId() {
         return id;
     }
@@ -65,8 +69,22 @@ public class User {
 
     @NotNull
     //If true is Admin, if not True is bidder. If not logged (observer) we don't have the instance of that User
-    public boolean getAdmin() { return admin; }
+    public boolean getAdmin() {
+        return admin;
+    }
 
+    /* Constructors */
+    public User(@JsonProperty("firstName") String firstName,
+                @JsonProperty("lastName") String lastName,
+                @JsonProperty("email") String email,
+                @JsonProperty("password") String password,
+                @JsonProperty("admin") boolean admin) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.admin = admin;
+    }
     public User(@JsonProperty("id") UUID id,
                 @JsonProperty("firstName") String firstName,
                 @JsonProperty("lastName") String lastName,
@@ -79,5 +97,8 @@ public class User {
         this.email = email;
         this.password = password;
         this.admin = admin;
+    }
+    public User() {
+
     }
 }

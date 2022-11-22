@@ -1,16 +1,3 @@
-2022-11-21 11:55:46 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TB_AUCTION" not found; SQL statement:
-select * from TB_AUCTION [42102-214]
-2022-11-21 11:55:57 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "delete [*]* from TB_AUCTIONS"; expected "identifier"; SQL statement:
-delete * from TB_AUCTIONS [42001-214]
-2022-11-21 11:56:02 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "delete [*]* from TB_AUCTIONS"; expected "identifier"; SQL statement:
-delete * from TB_AUCTIONS [42001-214]
-2022-11-21 11:56:19 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select\000d\000a10 * [*]from TB_AUCTIONS"; SQL statement:
-select
-10 * from TB_AUCTIONS [42000-214]
-2022-11-21 15:26:08 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TB_ACTIONS" not found; SQL statement:
-select * from TB_ACTIONS [42102-214]
+2022-11-22 22:11:18 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * [*]tb_auctions"; SQL statement:
+select * tb_auctions [42000-214]

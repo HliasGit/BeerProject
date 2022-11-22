@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @RequestMapping("api/v1/auctions")
@@ -20,7 +21,7 @@ public class AuctionController {
     }
 
     @PostMapping
-    public ResponseEntity<Auction> addAuction(@RequestBody Auction auction) {
+    public ResponseEntity<Auction> addAuction(@Valid @RequestBody Auction auction) {
         return new ResponseEntity<>(auctionService.addAuction(auction), HttpStatus.CREATED);
     }
 
