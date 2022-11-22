@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Table(name = "TB_PRODUCTS")
@@ -16,7 +15,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @NotNull(message = "User id is mandatory")
+    @NotNull(message = "UserId is mandatory")
     private UUID userId;
 
     @NotBlank(message = "Name is mandatory")

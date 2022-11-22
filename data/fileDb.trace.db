@@ -17,3 +17,14 @@ select * from TB_ACTIONS [42102-214]
 2022-11-22 20:25:29 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "delete [*]table tb_products"; expected "identifier"; SQL statement:
 delete table tb_products [42001-214]
+2022-11-22 20:49:03 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "delete tb_auctions\000d\000adelete [*]tb_users\000d\000adelete tb_products"; SQL statement:
+delete tb_auctions
+delete tb_users
+delete tb_products [42000-214]
+2022-11-22 20:49:11 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TB_USERS" not found; SQL statement:
+delete tb_users [42102-214]
+2022-11-22 20:49:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TB_USERS" not found; SQL statement:
+delete tb_users [42102-214]

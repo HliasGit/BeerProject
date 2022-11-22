@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "TB_OFFER")
+@Table(name = "TB_OFFERS")
 @Entity
 public class Offer {
 

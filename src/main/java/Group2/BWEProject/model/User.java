@@ -14,32 +14,32 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Table(name = "TB_USER")
+@Table(name = "TB_USERS")
 @Entity
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private final UUID id;
+    private UUID id;
 
     @NotBlank(message = "First is mandatory")
-    @Size(min=2, max=15)
-    private final String firstName;
+    @Size(min = 2, max = 15)
+    private String firstName;
 
     @NotBlank(message = "Last name is mandatory")
-    @Size(min=2, max=15)
-    private final String lastName;
+    @Size(min = 2, max = 15)
+    private String lastName;
 
     @NotBlank(message = "Email is mandatory")
     @Email
-    private final String email;
+    private String email;
 
     @NotBlank(message = "Password is mandatory")
-    @Size(min=8, max=15 ,message = "Password should be between 8 to 15 characters or numbers")
-    private final String password;
+    @Size(min = 8, max = 15, message = "Password should be between 8 to 15 characters or numbers")
+    private String password;
 
     @NotNull(message = "User role is mandatory")
-    private final Boolean admin;
+    private Boolean admin;
 
     /* Getters prepared for next logic implementation */
     public UUID getId() {
@@ -68,20 +68,24 @@ public class User {
 
     @NotNull
     //If true is Admin, if not True is bidder. If not logged (observer) we don't have the instance of that User
-    public boolean getAdmin() { return admin; }
+    public boolean getAdmin() {
+        return admin;
+    }
 
     /* Constructors */
-    public User(@JsonProperty("id") UUID id,
-                @JsonProperty("firstName") String firstName,
+    public User(@JsonProperty("firstName") String firstName,
                 @JsonProperty("lastName") String lastName,
                 @JsonProperty("email") String email,
                 @JsonProperty("password") String password,
                 @JsonProperty("admin") boolean admin) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.admin = admin;
+    }
+
+    public User() {
+
     }
 }
