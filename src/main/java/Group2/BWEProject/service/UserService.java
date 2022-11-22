@@ -20,21 +20,24 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public int addUser(User user) {
-        return userDao.insertUser(user);
+    public User addUser(User user) {
+        return userDao.save(user);
     }
 
     public List<User> getAllUsers(){
-        return userDao.selectAllUsers();
+        return (List<User>) userDao.findAll();
     }
 
-    public User getUserById (UUID id){
-        return userDao.selectUserById(id);
+    public Optional<User> getUserById (UUID id){
+        return userDao.findById(id);
     }
 
-    public int deleteUserById (UUID id) { return userDao.deleteUserById(id);};
+    public Boolean deleteUserById (UUID id) {
+        userDao.deleteById(id);
+        return true;
+    }
 
-    public int updateUserById (UUID id, User user) { return userDao.updateUserById(id, user);}
-
-    public boolean isAdminById (UUID id) { return userDao.isAdminById(id);}
+    public User updateUserById (UUID id, User user) {
+        return userDao.save(user);
+    }
 }
