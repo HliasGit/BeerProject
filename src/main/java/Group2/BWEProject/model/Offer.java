@@ -6,8 +6,8 @@ public class Offer {
 
     private final UUID id;
     private final double offeringPrice;
-    private final User user;
-    private final Product auction;
+    private final UUID userId;
+    private final UUID auctionId;
     private boolean accepted;
 
     public UUID getId() {
@@ -18,23 +18,23 @@ public class Offer {
         return offeringPrice;
     }
 
-    public User getUser() {
-        return user;
+    public UUID getUser() {
+        return userId;
     }
 
-    public Product getAuction() {
-        return auction;
+    public UUID getAuction() {
+        return auctionId;
     }
 
     public boolean isAccepted() {
         return accepted;
     }
 
-    public Offer(UUID id, double offeringPrice, User user, Product auction, boolean accepted) {
+    public Offer(UUID id, double offeringPrice, UUID userId, UUID auctionId, boolean accepted) {
         this.id = id;
         this.offeringPrice = offeringPrice;
-        this.user = user;
-        this.auction = auction;
+        this.userId = userId;
+        this.auctionId = auctionId;
         this.accepted = accepted;
     }
 }
