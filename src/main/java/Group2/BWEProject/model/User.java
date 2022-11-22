@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,24 +22,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private final UUID id;
 
-    @NotBlank
+    @NotBlank(message = "First is mandatory")
     @Size(min=2, max=15)
     private final String firstName;
 
-    @NotBlank
+    @NotBlank(message = "Last name is mandatory")
     @Size(min=2, max=15)
     private final String lastName;
 
-    @NotBlank
+    @NotBlank(message = "Email is mandatory")
+    @Email
     private final String email;
 
-    @NotBlank
-    @Size(min=8, max=15)
+    @NotBlank(message = "Password is mandatory")
+    @Size(min=8, max=15 ,message = "Password should be between 8 to 15 characters or numbers")
     private final String password;
 
-    @NotNull
+    @NotNull(message = "User role is mandatory")
     private final Boolean admin;
 
+    /* Getters prepared for next logic implementation */
     public UUID getId() {
         return id;
     }
@@ -67,6 +70,7 @@ public class User {
     //If true is Admin, if not True is bidder. If not logged (observer) we don't have the instance of that User
     public boolean getAdmin() { return admin; }
 
+    /* Constructors */
     public User(@JsonProperty("id") UUID id,
                 @JsonProperty("firstName") String firstName,
                 @JsonProperty("lastName") String lastName,

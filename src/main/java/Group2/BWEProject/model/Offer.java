@@ -1,5 +1,7 @@
 package Group2.BWEProject.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -9,25 +11,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Table(name= "TB_OFFER")
+@Table(name = "TB_OFFER")
 @Entity
 public class Offer {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private final UUID id;
+    private UUID id;
 
     @NotNull
-    private final double offeringPrice;
+    private double offeringPrice;
 
     @NotNull
-    private final UUID userId;
+    private UUID userId;
 
     @NotNull
-    private final UUID auctionId;
+    private UUID auctionId;
 
     private boolean accepted;
 
+
+    /* Getters prepared for next logic implementation */
     public UUID getId() {
         return id;
     }
@@ -51,11 +55,19 @@ public class Offer {
         return accepted;
     }
 
-    public Offer(UUID id, double offeringPrice, UUID userId, UUID auctionId, boolean accepted) {
-        this.id = id;
+    /* Constructors*/
+
+    public Offer(@JsonProperty("offeringPrice")double offeringPrice,
+                 @JsonProperty("userId")UUID userId,
+                 @JsonProperty("auctionId")UUID auctionId,
+                 @JsonProperty("accepted")boolean accepted) {
         this.offeringPrice = offeringPrice;
         this.userId = userId;
         this.auctionId = auctionId;
         this.accepted = accepted;
+    }
+
+    public Offer() {
+
     }
 }

@@ -14,3 +14,6 @@ select
 2022-11-21 15:26:08 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TB_ACTIONS" not found; SQL statement:
 select * from TB_ACTIONS [42102-214]
+2022-11-22 20:25:29 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "delete [*]table tb_products"; expected "identifier"; SQL statement:
+delete table tb_products [42001-214]

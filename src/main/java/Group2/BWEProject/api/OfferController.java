@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,17 +24,17 @@ public class OfferController {
     }
 
     @PostMapping
-    public ResponseEntity<Offer> addOffer(@RequestBody Offer offer) {
+    public ResponseEntity<Offer> addOffer(@Valid @RequestBody Offer offer) {
         return new ResponseEntity<>(offerService.addOffer(offer), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Offer>> selectAllOffers(){
+    public ResponseEntity<List<Offer>> selectAllOffers() {
         return new ResponseEntity<>(offerService.selectAllOffers(), HttpStatus.FOUND);
     }
 
-    @GetMapping(path="/{id}")
-    public ResponseEntity<Optional<Offer>> selectOfferById(@PathVariable("id") UUID id){
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Optional<Offer>> selectOfferById(@PathVariable("id") UUID id) {
         return new ResponseEntity<>(offerService.selectOfferById(id), HttpStatus.FOUND);
     }
 
@@ -42,8 +43,8 @@ public class OfferController {
         return new ResponseEntity<>(offerService.updateOfferById(id, offer), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path="/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<Boolean> deleteOfferById(@PathVariable("id") UUID id) {
         return new ResponseEntity<>(offerService.deleteOfferById(id), HttpStatus.OK);
     }
-    }
+}

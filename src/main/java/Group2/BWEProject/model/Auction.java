@@ -1,10 +1,11 @@
 package Group2.BWEProject.model;
 
-import org.springframework.lang.NonNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -20,22 +21,30 @@ public class Auction {
     @Size(min = 3, max = 14)
     private String title;
 
-    @NonNull
+    @NotNull(message = "Auction start date is mandatory")
     private LocalDate dateOfStart;
-    @NonNull
+    @NotNull(message = "Auction End date is mandatory")
     private LocalDate dateOfEnd;
 
     private UUID buyerId;
-    @NonNull
+    @NotNull(message = "Auction Seller is mandatory")
     private UUID sellerId;
-    @NonNull
+    @NotNull(message = "State of Auction title is mandatory")
     private Boolean active;
 
     private UUID productId;
     private String category;
 
+    /* Constructors */
 
-    public Auction(String title, LocalDate dateOfStart, LocalDate dateOfEnd, UUID buyerId, UUID sellerId, Boolean active, UUID productId, String category) {
+    public Auction(@JsonProperty("title")String title,
+                   @JsonProperty("dateOfStart")LocalDate dateOfStart,
+                   @JsonProperty("dateOfEnd")LocalDate dateOfEnd,
+                   @JsonProperty("buyerId")UUID buyerId,
+                   @JsonProperty("sellerId")UUID sellerId,
+                   @JsonProperty("active")Boolean active,
+                   @JsonProperty("productId")UUID productId,
+                   @JsonProperty("category")String category) {
         this.title = title;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;
@@ -50,6 +59,7 @@ public class Auction {
 
     }
 
+    /* Getters prepared for next logic implementation */
     public UUID getId() {
         return id;
     }
@@ -59,12 +69,12 @@ public class Auction {
         return title;
     }
 
-    @NonNull
+
     public LocalDate getDateOfStart() {
         return dateOfStart;
     }
 
-    @NonNull
+
     public LocalDate getDateOfEnd() {
         return dateOfEnd;
     }
@@ -73,22 +83,22 @@ public class Auction {
         return buyerId;
     }
 
-    @NonNull
+
     public UUID getSellerId() {
         return sellerId;
     }
 
-    @NonNull
+
     public Boolean getActive() {
         return active;
     }
 
-    @NonNull
+
     public UUID getProductId() {
         return productId;
     }
 
-    @NonNull
+
     public String getCategory() {
         return category;
     }
