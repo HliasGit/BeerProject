@@ -30,12 +30,12 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> selectAllUsers(){
-        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.FOUND);
+        return new ResponseEntity<>(userService.selectAllUsers(), HttpStatus.FOUND);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<User>> selectUserById(@PathVariable("id") UUID id){
-        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.FOUND);
+        return new ResponseEntity<>(userService.selectUserById(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping(path = "/{id}")

@@ -1,7 +1,6 @@
 package Group2.BWEProject.service;
 
 import Group2.BWEProject.dao.ProductDao;
-import Group2.BWEProject.model.Auction;
 import Group2.BWEProject.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +19,7 @@ public class ProductService {
     }
 
     public Product addProduct(Product product) {return productDao.save(product);}
-    public List<Product> getAllProducts(){return (List<Product>)productDao.findAll();}
+    public List<Product> selectAllProducts(){return (List<Product>)productDao.findAll();}
     public Optional<Product> selectProductById (UUID id){return productDao.findById(id);}
     public Boolean deleteProductById (UUID id) {
         productDao.deleteById(id);

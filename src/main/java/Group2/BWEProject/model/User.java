@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 @Table(name = "TB_USERS")
 @Entity
 public class User {
@@ -84,7 +85,19 @@ public class User {
         this.password = password;
         this.admin = admin;
     }
-
+    public User(@JsonProperty("id") UUID id,
+                @JsonProperty("firstName") String firstName,
+                @JsonProperty("lastName") String lastName,
+                @JsonProperty("email") String email,
+                @JsonProperty("password") String password,
+                @JsonProperty("admin") boolean admin) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.admin = admin;
+    }
     public User() {
 
     }

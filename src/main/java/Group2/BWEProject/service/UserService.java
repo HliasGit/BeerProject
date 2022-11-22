@@ -24,11 +24,11 @@ public class UserService {
         return userDao.save(user);
     }
 
-    public List<User> getAllUsers(){
+    public List<User> selectAllUsers(){
         return (List<User>) userDao.findAll();
     }
 
-    public Optional<User> getUserById (UUID id){
+    public Optional<User> selectUserById(UUID id){
         return userDao.findById(id);
     }
 
