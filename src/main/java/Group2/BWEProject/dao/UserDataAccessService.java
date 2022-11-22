@@ -14,7 +14,7 @@ public class UserDataAccessService implements UserDao{
 
     @Override
     public int insertUser(UUID id, User user) {
-        DB.add(new User(id, user.getFirstName(), user.getLastName(), user.getUserName(), user.getEmail(), user.getPassword(), user.getAdmin()));
+        DB.add(new User(id, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getAdmin()));
         return 1;
     }
 
