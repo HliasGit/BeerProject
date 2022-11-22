@@ -1,63 +1,41 @@
 package Group2.BWEProject.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.lang.NonNull;
-
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.UUID;
 
-//an item consists of a name, a description and an image
+@Table(name="TB_PRODUCTS")
+@Entity
 public class Product{
-    private final UUID id;
-    //@NonNull ((message = "username is mandatory"))
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    private User user;  ///String userName
-    //@NonNull ((message = "Name is mandatory"))
-    private final String name;
-    //@NonNull ((message = "Description is mandatory"))
-    private final String description;
-    private final String image; ///which type?
-    //@NonNull ((message = "Minimum price is mandatory"))
+    @NotNull(message = "user id is mandatory")
+//    private String user;
+    private UUID userId;
+
+    @NotBlank (message = "Name is mandatory")
+    @Size(min = 2, max = 15)
+    private String name;
+
+    @NotBlank (message = "Description is mandatory")
+    @Size(min = 2, max = 80)
+    private String description;
+    private String image; ///which type?
+    @NotNull (message = "Minimum price is mandatory")
     private Double minPrice;
-    private Double expectedPrice; //bigDecimal?
-    //@NonNull ((message = "Expected delivery time is mandatory"))
+    @NotNull (message = "Expected price is mandatory")
+    private Double expectedPrice;
+    @NotNull(message = "Expected delivery time is mandatory")
     private Integer expectedDeliveryTimeInDays;
 //    private Boolean onAuction;  //Auction auction
-
-    public UUID getId() {return id;}
-    public User getUser() {return user;}
-    public String getName() {
-        return name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public String getImage() {
-        return image;
-    }
-    public Double getMinPrice() {
-        return minPrice;
-    }
-    public Double getExpectedPrice() {
-        return expectedPrice;
-    }
-    public Integer getExpectedDeliveryTimeInDays() {
-        return expectedDeliveryTimeInDays;
-    }
-//    public Boolean getOnAuction() {
-//        return onAuction;
-//    }
-
-    public Product(@JsonProperty("id") UUID id,
-                @JsonProperty("user")User user,
-                @JsonProperty("name")String name,
-                @JsonProperty("description")String description,
-                @JsonProperty("image")String image,
-                @JsonProperty("min price")Double minPrice,
-                @JsonProperty("expected price")Double expectedPrice,
-                @JsonProperty("expected delivery time in days")Integer expectedDeliveryTimeInDays) {
-
-        this.id = id;
-        this.user= user;
+    public Product(UUID userId, String name, String description, String image, Double minPrice,
+                   Double expectedPrice, Integer expectedDeliveryTimeInDays) {
+        this.userId= userId;
         this.name = name;
         this.description = description;
         this.image = image;
@@ -66,4 +44,35 @@ public class Product{
         this.expectedDeliveryTimeInDays = expectedDeliveryTimeInDays;
 //        this.onAuction = onAuction;
     }
+    public Product(){
+    }
+    public UUID getId(){
+        return id;
+    }
+    @NotNull
+    public UUID getUser() { return userId; }
+    @NotBlank
+    public String getName() {
+        return name;
+    }
+    @NotBlank
+    public String getDescription() {
+        return description;
+    }
+    public String getImage() {
+        return image;
+    }
+    @NotNull
+    public Double getMinPrice() {
+        return minPrice;
+    }
+    @NotNull
+    public Double getExpectedPrice() {
+        return expectedPrice;
+    }
+    @NotNull
+    public Integer getExpectedDeliveryTimeInDays() {
+        return expectedDeliveryTimeInDays;
+    }
 }
+
