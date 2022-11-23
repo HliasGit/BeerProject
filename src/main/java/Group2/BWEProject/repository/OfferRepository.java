@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository("offerDao")
+@Repository("offerRepository")
 public interface OfferRepository extends CrudRepository<Offer, UUID> {
 }

@@ -15,7 +15,7 @@ public class OfferService {
     private final OfferRepository offerRepository;
 
     @Autowired
-    public OfferService(@Qualifier("offerDao") OfferRepository offerRepository) {
+    public OfferService(@Qualifier("offerRepository") OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
 

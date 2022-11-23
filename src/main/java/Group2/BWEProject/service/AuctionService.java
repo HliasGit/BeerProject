@@ -15,7 +15,7 @@ public class AuctionService {
     private final AuctionRepository auctionRepository;
 
     @Autowired
-    public AuctionService(@Qualifier("auctionDao") AuctionRepository auctionRepository) {
+    public AuctionService(@Qualifier("auctionRepository") AuctionRepository auctionRepository) {
         this.auctionRepository = auctionRepository;
     }
 

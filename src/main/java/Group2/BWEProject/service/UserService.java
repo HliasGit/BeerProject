@@ -16,7 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(@Qualifier("userDao") UserRepository userRepository) {
+    public UserService(@Qualifier("userRepository") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

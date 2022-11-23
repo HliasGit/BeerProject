@@ -14,7 +14,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Autowired
-    public ProductService(@Qualifier("productDao") ProductRepository productRepository) {
+    public ProductService(@Qualifier("productRepository") ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository("auctionDao")
+@Repository("auctionRepository")
 public interface AuctionRepository extends CrudRepository<Auction,UUID> {
 
 

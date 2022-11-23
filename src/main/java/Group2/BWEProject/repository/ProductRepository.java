@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository("productDao")
+@Repository("productRepository")
 public interface ProductRepository extends CrudRepository<Product, UUID> {
 
 
