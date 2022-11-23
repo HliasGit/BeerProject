@@ -21,10 +21,6 @@ public class ProductService {
     public Product addProduct(Product product) {return productDao.save(product);}
     public List<Product> selectAllProducts(){return (List<Product>)productDao.findAll();}
     public Optional<Product> selectProductById (UUID id){return productDao.findById(id);}
-    public Boolean deleteProductById (UUID id) {
-        productDao.deleteById(id);
-        return true;
-    }
-    public Product updateProductById (UUID id, Product product)
-    { return productDao.save(product);}
+    public Boolean deleteProductById (UUID id) {productDao.deleteById(id);return true;}
+    public Product updateProductById (UUID id, Product product) { return productDao.save(product);}
 }

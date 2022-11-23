@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.awt.image.BufferedImage;
 import java.util.UUID;
 
 @Table(name = "TB_PRODUCTS")
@@ -18,14 +19,15 @@ public class Product {
     @NotNull(message = "UserId is mandatory")
     private UUID userId;
 
-    @NotBlank(message = "Name is mandatory")
-    @Size(min = 2, max = 15)
+    @NotBlank(message = "Product name is mandatory")
+    @Size(min = 2, max = 15, message = "Product name should be at least 2 characters and maximum 15")
     private String name;
 
     @NotBlank(message = "Description is mandatory")
     @Size(min = 2, max = 80)
     private String description;
     private String image; //TODO: change type,ask professor
+//    private BufferedImage image;
     @NotNull(message = "Minimum price is mandatory")
     private Double minPrice;
     @NotNull(message = "Expected price is mandatory")
@@ -33,13 +35,13 @@ public class Product {
     @NotNull(message = "Expected delivery time is mandatory")
     private Integer expectedDeliveryTimeInDays;
 
-    public Product(@JsonProperty("userId") UUID userId,
-                   @JsonProperty("name") String name,
-                   @JsonProperty("description") String description,
-                   @JsonProperty("image") String image,
-                   @JsonProperty("minPrice") Double minPrice,
-                   @JsonProperty("expectedPrice") Double expectedPrice,
-                   @JsonProperty("expectedDeliveryTimeInDays") Integer expectedDeliveryTimeInDays) {
+    public Product(@JsonProperty("User Id") UUID userId,
+                   @JsonProperty("Name") String name,
+                   @JsonProperty("Description") String description,
+                   @JsonProperty("Image") String image,
+                   @JsonProperty("Minimum Price") Double minPrice,
+                   @JsonProperty("Expected Price") Double expectedPrice,
+                   @JsonProperty("Expected Delivery Time In Days") Integer expectedDeliveryTimeInDays) {
         this.userId = userId;
         this.name = name;
         this.description = description;
