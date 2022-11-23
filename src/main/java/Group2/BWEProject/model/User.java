@@ -74,24 +74,11 @@ public class User {
     }
 
     /* Constructors */
-    public User(@JsonProperty("firstName") String firstName,
-                @JsonProperty("lastName") String lastName,
-                @JsonProperty("email") String email,
-                @JsonProperty("password") String password,
-                @JsonProperty("admin") boolean admin) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.admin = admin;
-    }
-    public User(@JsonProperty("id") UUID id,
-                @JsonProperty("firstName") String firstName,
-                @JsonProperty("lastName") String lastName,
-                @JsonProperty("email") String email,
-                @JsonProperty("password") String password,
-                @JsonProperty("admin") boolean admin) {
-        this.id = id;
+    public User(@JsonProperty("First Name") String firstName,
+                @JsonProperty("Last Name") String lastName,
+                @JsonProperty("Email") String email,
+                @JsonProperty("Password") String password,
+                @JsonProperty("Admin") boolean admin) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
