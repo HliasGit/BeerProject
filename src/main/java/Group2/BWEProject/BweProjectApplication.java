@@ -1,8 +1,8 @@
 package Group2.BWEProject;
 
-import Group2.BWEProject.dao.AuctionDao;
-import Group2.BWEProject.dao.ProductDao;
-import Group2.BWEProject.dao.UserDao;
+import Group2.BWEProject.repository.AuctionRepository;
+import Group2.BWEProject.repository.ProductRepository;
+import Group2.BWEProject.repository.UserRepository;
 import Group2.BWEProject.model.Auction;
 import Group2.BWEProject.model.Product;
 import Group2.BWEProject.model.User;
@@ -22,15 +22,15 @@ public class BweProjectApplication {
 
 
         /* create fake data  */
-        AuctionDao auctionRepository =
-                configurableApplicationContext.getBean(AuctionDao.class);
+        AuctionRepository auctionRepository =
+                configurableApplicationContext.getBean(AuctionRepository.class);
         Auction auctionDbRecord = new Auction("TestTitle", LocalDate.now(), LocalDate.of(2022, 11, 30), UUID.randomUUID(), UUID.randomUUID(), true, null, "wine");
-        ProductDao productRepository =
-                configurableApplicationContext.getBean(ProductDao.class);
+        ProductRepository productRepository =
+                configurableApplicationContext.getBean(ProductRepository.class);
         Product productDbRecord = new Product(UUID.randomUUID(), "TestName", "Test Description", "Test Image", 8.9, 9.2, 10);
 
-        UserDao userRepository =
-                configurableApplicationContext.getBean(UserDao.class);
+        UserRepository userRepository =
+                configurableApplicationContext.getBean(UserRepository.class);
         User userDbRecord = new User("TestName", "TestLastName", "email@email.com", "testpassword", true);
 
 

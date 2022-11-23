@@ -10,6 +10,8 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
 
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Table(name = "TB_AUCTIONS")
 @Entity
 public class Auction {

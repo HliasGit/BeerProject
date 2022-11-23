@@ -1,6 +1,6 @@
 package Group2.BWEProject.service;
 
-import Group2.BWEProject.dao.UserDao;
+import Group2.BWEProject.repository.UserRepository;
 import Group2.BWEProject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,31 +13,31 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserService(@Qualifier("userDao") UserDao userDao) {
-        this.userDao = userDao;
+    public UserService(@Qualifier("userDao") UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public User addUser(User user) {
-        return userDao.save(user);
+        return userRepository.save(user);
     }
 
     public List<User> selectAllUsers(){
-        return (List<User>) userDao.findAll();
+        return (List<User>) userRepository.findAll();
     }
 
     public Optional<User> selectUserById(UUID id){
-        return userDao.findById(id);
+        return userRepository.findById(id);
     }
 
     public Boolean deleteUserById (UUID id) {
-        userDao.deleteById(id);
+        userRepository.deleteById(id);
         return true;
     }
 
     public User updateUserById (UUID id, User user) {
-        return userDao.save(user);
+        return userRepository.save(user);
     }
 }

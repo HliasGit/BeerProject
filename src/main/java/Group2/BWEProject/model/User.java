@@ -32,7 +32,7 @@ public class User {
     private String lastName;
 
     @NotBlank(message = "Email is mandatory")
-    @Email
+    @Email(message = "Email is need to be in correct format")
     private String email;
 
     @NotBlank(message = "Password is mandatory")
