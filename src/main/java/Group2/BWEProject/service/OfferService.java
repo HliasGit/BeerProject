@@ -1,6 +1,6 @@
 package Group2.BWEProject.service;
 
-import Group2.BWEProject.dao.OfferDao;
+import Group2.BWEProject.repository.OfferRepository;
 import Group2.BWEProject.model.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,31 +12,31 @@ import java.util.UUID;
 
 @Service
 public class OfferService {
-    private final OfferDao offerDao;
+    private final OfferRepository offerRepository;
 
     @Autowired
-    public OfferService(@Qualifier("offerDao") OfferDao offerDao) {
-        this.offerDao = offerDao;
+    public OfferService(@Qualifier("offerRepository") OfferRepository offerRepository) {
+        this.offerRepository = offerRepository;
     }
 
     public List<Offer> selectAllOffers(){
-        return (List<Offer>) offerDao.findAll();
+        return (List<Offer>) offerRepository.findAll();
     }
 
     public Optional<Offer> selectOfferById(UUID id){
-        return offerDao.findById(id);
+        return offerRepository.findById(id);
     }
 
     public Boolean deleteOfferById(UUID id){
-        offerDao.deleteById(id);
+        offerRepository.deleteById(id);
         return true;
     }
 
     public Offer updateOfferById(UUID id, Offer offer){
-        return offerDao.save(offer);
+        return offerRepository.save(offer);
     }
 
     public Offer addOffer(Offer offer) {
-        return offerDao.save(offer);
+        return offerRepository.save(offer);
     }
 }

@@ -10,6 +10,8 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
 
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Table(name = "TB_AUCTIONS")
 @Entity
 public class Auction {
@@ -35,16 +37,19 @@ public class Auction {
     private UUID productId;
     private String category;
 
+    //TODO: auction state by using enum
+
+
     /* Constructors */
 
-    public Auction(@JsonProperty("title")String title,
-                   @JsonProperty("dateOfStart")LocalDate dateOfStart,
-                   @JsonProperty("dateOfEnd")LocalDate dateOfEnd,
-                   @JsonProperty("buyerId")UUID buyerId,
-                   @JsonProperty("sellerId")UUID sellerId,
-                   @JsonProperty("active")Boolean active,
-                   @JsonProperty("productId")UUID productId,
-                   @JsonProperty("category")String category) {
+    public Auction(@JsonProperty("Title")String title,
+                   @JsonProperty("Date Of Start")LocalDate dateOfStart,
+                   @JsonProperty("Date Of End")LocalDate dateOfEnd,
+                   @JsonProperty("Buyer Id")UUID buyerId,
+                   @JsonProperty("Seller Id")UUID sellerId,
+                   @JsonProperty("Active")Boolean active,
+                   @JsonProperty("ProductId")UUID productId,
+                   @JsonProperty("Category")String category) {
         this.title = title;
         this.dateOfStart = dateOfStart;
         this.dateOfEnd = dateOfEnd;

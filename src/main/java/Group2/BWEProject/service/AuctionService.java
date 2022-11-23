@@ -1,6 +1,6 @@
 package Group2.BWEProject.service;
 
-import Group2.BWEProject.dao.AuctionDao;
+import Group2.BWEProject.repository.AuctionRepository;
 import Group2.BWEProject.model.Auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,31 +12,31 @@ import java.util.UUID;
 
 @Service
 public class AuctionService {
-    private final AuctionDao auctionDao;
+    private final AuctionRepository auctionRepository;
 
     @Autowired
-    public AuctionService(@Qualifier("auctionDao") AuctionDao auctionDao) {
-        this.auctionDao = auctionDao;
+    public AuctionService(@Qualifier("auctionRepository") AuctionRepository auctionRepository) {
+        this.auctionRepository = auctionRepository;
     }
 
     public Auction addAuction(Auction auction) {
-        return  auctionDao.save(auction);
+        return  auctionRepository.save(auction);
     }
 
     public List<Auction> selectAllAuctions() {
-        return (List<Auction>) auctionDao.findAll();
+        return (List<Auction>) auctionRepository.findAll();
     }
 
     public Optional<Auction> selectAuctionById(UUID id) {
-        return auctionDao.findById(id);
+        return auctionRepository.findById(id);
     }
 
     public Auction updateAuctionById(UUID id, Auction auction) {
-        return auctionDao.save(auction);
+        return auctionRepository.save(auction);
     }
 
     public Boolean deleteAuctionById(UUID id) {
-        auctionDao.deleteById(id);
+        auctionRepository.deleteById(id);
         return true;
     }
 

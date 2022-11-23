@@ -57,10 +57,10 @@ public class Offer {
 
     /* Constructors*/
 
-    public Offer(@JsonProperty("offeringPrice")double offeringPrice,
-                 @JsonProperty("userId")UUID userId,
-                 @JsonProperty("auctionId")UUID auctionId,
-                 @JsonProperty("accepted")boolean accepted) {
+    public Offer(@JsonProperty("Offering Price")double offeringPrice,
+                 @JsonProperty("User Id")UUID userId,
+                 @JsonProperty("Auction Id")UUID auctionId,
+                 @JsonProperty("Accepted")boolean accepted) {
         this.offeringPrice = offeringPrice;
         this.userId = userId;
         this.auctionId = auctionId;
