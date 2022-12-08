@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,7 +28,11 @@ public class AuctionService {
     }
 
     public List<Auction> selectAllAuctions() {
-        return (List<Auction>) auctionRepository.findAll();
+
+        List<Auction> auctions = new ArrayList<>();
+        auctionRepository.findAll()
+                .forEach(auctions::add);
+        return auctions;
     }
 
     public Optional<Auction> selectAuctionById(UUID id) {
@@ -48,5 +53,7 @@ public class AuctionService {
                .filter(auction -> auction.getAuctionStatus().equals(AuctionStatus.LOCKED))
                .collect(Collectors.toList());
     }
+
+
 
 }
