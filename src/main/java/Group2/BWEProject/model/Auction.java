@@ -1,6 +1,7 @@
 package Group2.BWEProject.model;
 
 
+import Group2.BWEProject.utils.AuctionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -10,8 +11,6 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
 
-//@NoArgsConstructor
-//@AllArgsConstructor
 @Table(name = "TB_AUCTIONS")
 @Entity
 public class Auction {
@@ -31,8 +30,9 @@ public class Auction {
     private UUID buyerId;
     @NotNull(message = "Auction Seller is mandatory")
     private UUID sellerId;
-    @NotNull(message = "State of Auction title is mandatory")
-    private Boolean active;
+
+
+    private AuctionStatus auctionStatus;
 
     private UUID productId;
     private String category;
@@ -47,7 +47,7 @@ public class Auction {
                    @JsonProperty("Date Of End")LocalDate dateOfEnd,
                    @JsonProperty("Buyer Id")UUID buyerId,
                    @JsonProperty("Seller Id")UUID sellerId,
-                   @JsonProperty("Active")Boolean active,
+                   @JsonProperty("Active") AuctionStatus auctionStatus,
                    @JsonProperty("ProductId")UUID productId,
                    @JsonProperty("Category")String category) {
         this.title = title;
@@ -55,7 +55,7 @@ public class Auction {
         this.dateOfEnd = dateOfEnd;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
-        this.active = active;
+        this.auctionStatus =auctionStatus;
         this.productId = productId;
         this.category = category;
     }
@@ -94,8 +94,8 @@ public class Auction {
     }
 
 
-    public Boolean getActive() {
-        return active;
+    public AuctionStatus getAuctionStatus() {
+        return auctionStatus;
     }
 
 

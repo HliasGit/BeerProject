@@ -2,6 +2,7 @@ package Group2.BWEProject.service;
 
 import Group2.BWEProject.repository.AuctionRepository;
 import Group2.BWEProject.model.Auction;
+import Group2.BWEProject.utils.AuctionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class AuctionService {
@@ -38,6 +41,12 @@ public class AuctionService {
     public Boolean deleteAuctionById(UUID id) {
         auctionRepository.deleteById(id);
         return true;
+    }
+    public List<Auction> getUnlockedAutions(){
+      List<Auction> listOfAuctions = (List<Auction>) auctionRepository.findAll();
+       return listOfAuctions.stream()
+               .filter(auction -> auction.getAuctionStatus().equals(AuctionStatus.LOCKED))
+               .collect(Collectors.toList());
     }
 
 }
