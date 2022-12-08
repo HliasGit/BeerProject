@@ -19,6 +19,7 @@ public class BweProjectApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext configurableApplicationContext =
                 SpringApplication.run(BweProjectApplication.class, args);
+        System.out.println("Springboot Application has started");
 
 
         /* create fake data  */
