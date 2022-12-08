@@ -1,6 +1,7 @@
 package Group2.BWEProject.model;
 
 
+import Group2.BWEProject.utils.AuctionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -10,8 +11,6 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
 
-//@NoArgsConstructor
-//@AllArgsConstructor
 @Table(name = "TB_AUCTIONS")
 @Entity
 public class Auction {
@@ -23,39 +22,54 @@ public class Auction {
     @Size(min = 3, max = 14)
     private String title;
 
+    @NotBlank(message = "Auction description is mandatory")
+    @Size(min = 10, max = 140)
+    private String description;
+
+    @NotNull(message = "Minimum price is mandatory")
+    private double minPrice;
+
+    private double maxPrice;
+
     @NotNull(message = "Auction start date is mandatory")
-    private LocalDate dateOfStart;
+    private LocalDate startDate;
     @NotNull(message = "Auction End date is mandatory")
-    private LocalDate dateOfEnd;
+    private LocalDate endDate;
+
+
+    private AuctionStatus auctionStatus;
 
     private UUID buyerId;
     @NotNull(message = "Auction Seller is mandatory")
     private UUID sellerId;
-    @NotNull(message = "State of Auction title is mandatory")
-    private Boolean active;
 
     private UUID productId;
     private String category;
 
-    //TODO: auction state by using enum
 
 
     /* Constructors */
 
     public Auction(@JsonProperty("Title")String title,
-                   @JsonProperty("Date Of Start")LocalDate dateOfStart,
-                   @JsonProperty("Date Of End")LocalDate dateOfEnd,
+                   @JsonProperty("Description")String desrciption,
+                   @JsonProperty("Minimum price")Double minPrice,
+                   @JsonProperty("Maximum price")Double maxPrice,
+                   @JsonProperty("Date Of Start")LocalDate startDate,
+                   @JsonProperty("Date Of End")LocalDate endDate,
                    @JsonProperty("Buyer Id")UUID buyerId,
                    @JsonProperty("Seller Id")UUID sellerId,
-                   @JsonProperty("Active")Boolean active,
+                   @JsonProperty("Active") AuctionStatus auctionStatus,
                    @JsonProperty("ProductId")UUID productId,
                    @JsonProperty("Category")String category) {
         this.title = title;
-        this.dateOfStart = dateOfStart;
-        this.dateOfEnd = dateOfEnd;
+        this.description = desrciption;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPricegit;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
-        this.active = active;
+        this.auctionStatus =auctionStatus;
         this.productId = productId;
         this.category = category;
     }
@@ -75,13 +89,13 @@ public class Auction {
     }
 
 
-    public LocalDate getDateOfStart() {
-        return dateOfStart;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
 
-    public LocalDate getDateOfEnd() {
-        return dateOfEnd;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
     public UUID getBuyerId() {
@@ -94,8 +108,8 @@ public class Auction {
     }
 
 
-    public Boolean getActive() {
-        return active;
+    public AuctionStatus getAuctionStatus() {
+        return auctionStatus;
     }
 
 
@@ -106,6 +120,18 @@ public class Auction {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getMinPrice() {
+        return minPrice;
+    }
+
+    public double getMaxPrice() {
+        return maxPrice;
     }
 
 }
