@@ -15,14 +15,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class UserServiceTest {
 
-    UUID random = UUID.randomUUID();
     Optional<User> user1 = Optional.of(new User("Ciao", "Vaffanculo", "ciaostrono@gmail.com", "password", false));
     Optional<User> user2 = Optional.of(new User("Cane", "Stuffs", "afasano@gmail.com", "password", false));
     List<User> userList = new ArrayList<>();
+    boolean value;
 
     @Autowired
     private UserService userService;
@@ -35,15 +36,16 @@ class UserServiceTest {
         userList.add(user1.get());
         userList.add(user2.get());
 
-        Mockito.when(userRepository.findById(random)).thenReturn(user1);
-        Mockito.when(userRepository.save(user1.get())).thenReturn(user1.get());
-        Mockito.when(userRepository.findAll()).thenReturn(userList);
+        when(userRepository.findById(user1.get().getId())).thenReturn(user1);
+        when(userRepository.save(user1.get())).thenReturn(user1.get());
+        when(userRepository.findAll()).thenReturn(userList);
+        //TODO DELETE BUT I DON'T KNOW HOW
     }
 
     @Test
-    public void testGetUserByIdSuccess(){
-        String userName = "Ciao";
-        User userFound = userService.selectUserById(random).get();
+    public void testGetUserById(){
+        String userName = user1.get().getFirstName();
+        User userFound = userService.selectUserById(user1.get().getId()).get();
         assertEquals(userName, userFound.getFirstName());
     }
 
@@ -60,4 +62,20 @@ class UserServiceTest {
         User userFound = userService.selectAllUsers().get(1);
         assertEquals(userFound.getFirstName(), userName);
     }
+
+    @Test
+    public void testUpdateUser(){
+        String userName = user1.get().getFirstName();
+        User userFound = userService.updateUserById(user2.get().getId(),user1.get());
+        assertEquals(userName, userFound.getFirstName());
+    }
+
+    //TODO
+    /*
+    @Test
+    public void testDeleteUser(){
+
+    }
+
+     */
 }
