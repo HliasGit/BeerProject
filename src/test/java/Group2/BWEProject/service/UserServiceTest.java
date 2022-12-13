@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class UserServiceTest {
 
     UUID random = UUID.randomUUID();
+    Optional<User> user = Optional.of(new User("Ciao", "Vaffanculo", "ciaostrono@gmail.com", "password", false));
+
 
     @Autowired
     private UserService userService;
@@ -27,14 +29,21 @@ class UserServiceTest {
 
     @BeforeEach
     void setup(){
-        Optional<User> user = Optional.of(new User("Ciao", "Vaffanculo", "ciaostrono@gmail.com", "password", false));
         Mockito.when(userRepository.findById(random)).thenReturn(user);
+        Mockito.when(userRepository.save(user.get())).thenReturn(user.get());
     }
 
     @Test
     public void testGetUserByIdSuccess(){
         String userName = "Ciao";
         User userFound = userService.selectUserById(random).get();
+        assertEquals(userName, userFound.getFirstName());
+    }
+
+    @Test
+    public void testAddUser(){
+        String userName = "Ciao";
+        User userFound = userService.addUser(user.get());
         assertEquals(userName, userFound.getFirstName());
     }
 }
