@@ -53,7 +53,7 @@ public class Auction {
     public Auction(@JsonProperty("Title")String title,
                    @JsonProperty("Description")String desrciption,
                    @JsonProperty("Minimum price")Double minPrice,
-                   @JsonProperty("Maximum price")Double maxPrice,
+                   @JsonProperty("Maximum price")Double maxPricegit,
                    @JsonProperty("Date Of Start")LocalDate startDate,
                    @JsonProperty("Date Of End")LocalDate endDate,
                    @JsonProperty("Buyer Id")UUID buyerId,
