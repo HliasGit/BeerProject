@@ -1,9 +1,8 @@
-package com.pintbid.project.backend.service;
+package com.pintbid.project.backend.services;
 
 
 import com.pintbid.project.backend.models.User;
 import com.pintbid.project.backend.repository.UserRepository;
-import com.pintbid.project.backend.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
