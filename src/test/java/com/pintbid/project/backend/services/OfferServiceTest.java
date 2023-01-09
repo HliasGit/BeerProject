@@ -1,9 +1,8 @@
-package com.pintbid.project.backend.service;
+package com.pintbid.project.backend.services;
 
 
 import com.pintbid.project.backend.models.Offer;
 import com.pintbid.project.backend.repository.OfferRepository;
-import com.pintbid.project.backend.services.OfferService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
