@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -33,7 +34,7 @@ class OfferServiceTest {
     void setup(){
         list.add(offer1);
         list.add(offer2);
-
+        doNothing().when(offerRepository).deleteById(offer1.getId());
         when(offerRepository.findAll()).thenReturn(list);
         when(offerRepository.save(offer1)).thenReturn(offer1);
         when(offerRepository.findById(offer1.getId())).thenReturn(Optional.ofNullable(offer1));
@@ -67,5 +68,9 @@ class OfferServiceTest {
         assertEquals(id, offerFound.getId());
     }
 
-    //TODO DELETE METHOD
+    @Test
+    public void testDeleteById(){
+        Boolean res = offerService.deleteOfferById(offer1.getId());
+        assertEquals(res, true);
+    }
 }

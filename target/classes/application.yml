@@ -1,13 +1,8 @@
 cloud:
   aws:
     credentials:
-<<<<<<< HEAD
-      access-key: // your own AWS access key
-      secret-key: // your own secret key
-=======
       access-key: AKIARLZEDVJ7VGEXNEMZ
       secret-key: xtUbIVrkHgQFP2lhWJbEXG984jTVNewgAfkyNw7Y
->>>>>>> c425c79ad831bb36bcca2e65b3ebede7a2470625
     region:
       static: us-east-1
     stack:

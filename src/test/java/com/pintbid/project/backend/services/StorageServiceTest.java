@@ -40,7 +40,7 @@ class StorageServiceTest {
     }
 
     @Test
-    void downloadFile() throws IOException {
+    void downloadFile() {
     }
 
     @Test
