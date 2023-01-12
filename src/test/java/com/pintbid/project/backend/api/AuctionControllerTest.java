@@ -38,6 +38,7 @@ class AuctionControllerTest {
     void setup(){
         list.add(auction1);
         list.add(auction2);
+        when(auctionService.deleteAuctionById(auction1.getId())).thenReturn(true);
         when(auctionService.createAuction(auction1)).thenReturn(auction1);
         when(auctionService.selectAllAuctions()).thenReturn(list);
         when(auctionService.selectAuctionById(auction1.getId())).thenReturn(Optional.ofNullable(auction1));
@@ -74,5 +75,7 @@ class AuctionControllerTest {
 
     @Test
     void deleteAuctionById() {
+        ResponseEntity<Boolean> res = auctionController.deleteAuctionById(auction1.getId());
+        assertEquals(res.getStatusCode(), HttpStatus.NO_CONTENT);
     }
 }

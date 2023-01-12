@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -36,6 +37,7 @@ class AuctionServiceTest {
         list.add(auction1);
         list.add(auction2);
         listUnl.add(auction2);
+        doNothing().when(auctionRepository).deleteById(auction1.getId());
         when(auctionRepository.save(auction1)).thenReturn(auction1);
         when(auctionRepository.findAll()).thenReturn(list);
         when(auctionRepository.findById(auction1.getId())).thenReturn(Optional.ofNullable(auction1));
@@ -70,6 +72,8 @@ class AuctionServiceTest {
 
     @Test
     void deleteAuctionById() {
+        Boolean res = auctionService.deleteAuctionById(auction1.getId());
+        assertEquals(res, true);
     }
 
     @Test
