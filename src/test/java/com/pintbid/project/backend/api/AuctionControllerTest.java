@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -45,9 +46,9 @@ class AuctionControllerTest {
         when(auctionService.updateAuctionById(auction2.getId(), auction1)).thenReturn(auction1);
     }
 
-    //TODO this test doesn't work and I don't know why
     @Test
     void createAuction() {
+        when(auctionService.createAuction(any())).thenReturn(auction1);
         ResponseEntity<Auction> result = auctionController.createAuction(auction1);
         assertEquals(result.getBody(), auction1);
     }

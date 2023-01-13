@@ -1,8 +1,8 @@
 package com.pintbid.project.backend.models;
 
 
-import com.pintbid.project.backend.utils.EAuctionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.pintbid.project.backend.utils.EAuctionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -22,7 +22,7 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<List<User>> selectAllUsers() {
         try {
-            List<User> users = new ArrayList<User>();
+            List<User> users = new ArrayList<>();
 
             userService.selectAllUsers().forEach(users::add);
             if (users.isEmpty()) {
@@ -50,7 +50,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User _user = userService
-                    .updateUser(new User(user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail(), user.getPassword()));
+                    .addUser(new User(user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail(), user.getPassword()));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

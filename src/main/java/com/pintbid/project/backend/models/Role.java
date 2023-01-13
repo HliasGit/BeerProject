@@ -1,8 +1,6 @@
 package com.pintbid.project.backend.models;
 
 import com.pintbid.project.backend.utils.ERole;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 

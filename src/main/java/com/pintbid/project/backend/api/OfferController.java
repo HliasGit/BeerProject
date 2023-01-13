@@ -28,7 +28,7 @@ public class OfferController {
 
         try {
             Offer _offer = offerService
-                    .updateOfferById(offer.getId(), new Offer(offer.getOfferingPrice(), offer.getUser(), offer.getAuction(), offer.isAccepted()));
+                    .addOffer(new Offer(offer.getOfferingPrice(), offer.getUser(), offer.getAuction(), offer.isAccepted()));
             return new ResponseEntity<>(_offer, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,22 +1,16 @@
 package com.pintbid.project.backend.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pintbid.project.backend.models.Auction;
-import com.pintbid.project.backend.models.User;
-import com.pintbid.project.backend.repository.AuctionRepository;
 import com.pintbid.project.backend.services.AuctionService;
-import com.pintbid.project.backend.utils.EAuctionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RequestMapping("api/auctions")
 @RestController
