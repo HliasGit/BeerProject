@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +21,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class OfferServiceTest {
 
-    Offer offer1 = new Offer(12.5,1, 1, true);
-    Offer offer2 = new Offer(13.4,2, 2, false);
+    Offer offer1 = new Offer(12.5,1, 1, true, 3, LocalDate.of(2019, 11, 22));
+    Offer offer2 = new Offer(13.4,2, 2, false, 5, LocalDate.of(2021, 12, 27));
     List<Offer> list = new ArrayList<>();
 
     @Autowired

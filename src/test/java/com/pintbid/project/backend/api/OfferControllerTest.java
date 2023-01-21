@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,8 +26,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class OfferControllerTest {
 
-    Offer offer1 = new Offer(12.2, 12, 13, true);
-    Offer offer2 = new Offer(32.2, 13, 14, true);
+    Offer offer1 = new Offer(12.2, 12, 13, true, 200, LocalDate.of(2018, 10, 23));
+    Offer offer2 = new Offer(32.2, 13, 14, true, 500, LocalDate.of(2019, 11, 19));
     List<Offer> list = new ArrayList();
 
     @Autowired
