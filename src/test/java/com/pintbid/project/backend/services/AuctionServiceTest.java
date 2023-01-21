@@ -2,6 +2,7 @@ package com.pintbid.project.backend.services;
 
 import com.pintbid.project.backend.models.Auction;
 import com.pintbid.project.backend.repository.AuctionRepository;
+import com.pintbid.project.backend.utils.EAuctionCategory;
 import com.pintbid.project.backend.utils.EAuctionStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class AuctionServiceTest {
 
-    Auction auction1 = new Auction("test", "description", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.ACTIVE, 34, "si");
-    Auction auction2 = new Auction("test2", "description2", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.LOCKED, 35, "si");
+    Auction auction1 = new Auction("test", "description", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.ACTIVE, 34, EAuctionCategory.WINE);
+    Auction auction2 = new Auction("test2", "description2", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.LOCKED, 35, EAuctionCategory.WINE);
     List<Auction> list = new ArrayList<>();
     List<Auction> listUnl = new ArrayList<>();
 

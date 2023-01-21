@@ -26,6 +26,8 @@ public class ProductService {
 
     public Optional<Product> getProductByID(Integer id){return productRepository.findById(id);}
 
+    public Product updateProduct(Integer productId,Product product){return productRepository.save(product);}
+
     public Boolean deleteProductByID(Integer id){
         productRepository.deleteById(id);
         return true;

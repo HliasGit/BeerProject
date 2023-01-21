@@ -2,6 +2,7 @@ package com.pintbid.project.backend.api;
 
 import com.pintbid.project.backend.models.Auction;
 import com.pintbid.project.backend.services.AuctionService;
+import com.pintbid.project.backend.utils.EAuctionCategory;
 import com.pintbid.project.backend.utils.EAuctionStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class AuctionControllerTest {
 
-    Auction auction1 = new Auction("test", "description", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.ACTIVE, 34, "si");
-    Auction auction2 = new Auction( "test2", "description2", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.ACTIVE, 35, "si");
+    Auction auction1 = new Auction("test", "description", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.ACTIVE, 34, EAuctionCategory.WINE);
+    Auction auction2 = new Auction( "test2", "description2", 12.2, 34.2, LocalDate.of(2012, 11, 13), LocalDate.of(2013, 11, 13), 12, 14, EAuctionStatus.ACTIVE, 35, EAuctionCategory.WINE);
     ResponseEntity<Auction> entity = new ResponseEntity<Auction>(auction1, HttpStatus.CREATED);
     ResponseEntity<Auction> entity2 = new ResponseEntity<Auction>(auction2, HttpStatus.OK);
     List<Auction> list = new ArrayList<>();

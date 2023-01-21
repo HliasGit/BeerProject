@@ -2,6 +2,7 @@ package com.pintbid.project.backend.models;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.pintbid.project.backend.utils.EAuctionCategory;
 import com.pintbid.project.backend.utils.EAuctionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,9 +53,11 @@ public class Auction {
 
 
     private Integer productId;
-    private String category;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private EAuctionCategory category;
 
-    public Auction(String title, String description, double minPrice, double maxPrice, LocalDate startDate, LocalDate endDate, Integer buyerId, Integer sellerId, com.pintbid.project.backend.utils.EAuctionStatus EAuctionStatus, Integer productId, String category) {
+    public Auction(String title, String description, double minPrice, double maxPrice, LocalDate startDate, LocalDate endDate, Integer buyerId, Integer sellerId, com.pintbid.project.backend.utils.EAuctionStatus EAuctionStatus, Integer productId, EAuctionCategory category) {
         this.title = title;
         this.description = description;
         this.minPrice = minPrice;

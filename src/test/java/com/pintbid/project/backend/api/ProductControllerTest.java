@@ -45,7 +45,6 @@ class ProductControllerTest {
         when(productService.getProductByID(product1.getId())).thenReturn(Optional.ofNullable(product1));
 
     }
-
     @Test
     void createProduct() {
         when(productService.createProduct(any())).thenReturn(product1);
@@ -57,7 +56,7 @@ class ProductControllerTest {
 
     @Test
     void getAllProducts() {
-        ResponseEntity<List<Product>> res = productController.getAllProducts(null);
+        ResponseEntity<List<Product>> res = productController.getAllProducts();
         assertEquals(res.getBody().get(0), product1);
     }
 

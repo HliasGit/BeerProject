@@ -1,6 +1,8 @@
 package com.pintbid.project.backend.api;
 
 
+import com.pintbid.project.backend.models.Auction;
+import com.pintbid.project.backend.models.Offer;
 import com.pintbid.project.backend.models.Product;
 import com.pintbid.project.backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +37,26 @@ public class ProductController {
         }    }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required = false) String name) {
+    public ResponseEntity<List<Product>> getAllProducts() {
         try {
             List<Product> products = new ArrayList<Product>();
+            productService.getAllProducts().forEach(products::add);
+            if (products.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
 
-            if (name == null)
-                productService.getAllProducts().forEach(products::add);
-            else
-                productService.getAllProductsByName(name).forEach(products::add);
+            return new ResponseEntity<>(products, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    @GetMapping(path = "/name/{name}")
+    public ResponseEntity<List<Product>> getAllProductsByName(@RequestParam("name") String name) {
+        try {
+            List<Product> products = new ArrayList<Product>();
+            productService.getAllProductsByName(name).forEach(products::add);
 
             if (products.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -73,6 +87,8 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
     @PutMapping(path = "{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable("id") Integer id, @RequestBody Product product) {
         Optional<Product> productData = productService.getProductByID(id);
@@ -85,7 +101,7 @@ public class ProductController {
             _product.setMinPrice(product.getMinPrice());
             _product.setExpectedPrice(product.getExpectedPrice());
             _product.setExpectedDeliveryTimeInDays(product.getExpectedDeliveryTimeInDays());
-            return new ResponseEntity<>(productService.createProduct(_product), HttpStatus.OK);
+            return new ResponseEntity<>(productService.updateProduct(product.getId(),_product), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
