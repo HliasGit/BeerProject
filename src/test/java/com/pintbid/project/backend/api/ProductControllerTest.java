@@ -1,7 +1,10 @@
 package com.pintbid.project.backend.api;
 
 import com.pintbid.project.backend.models.Product;
+import com.pintbid.project.backend.models.User;
 import com.pintbid.project.backend.repository.ProductRepository;
+import com.pintbid.project.backend.services.ProductService;
+import com.pintbid.project.backend.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -27,8 +31,7 @@ class ProductControllerTest {
     List<Product> list = new ArrayList<>();
 
     @MockBean
-    private ProductRepository productRepository;
-
+    private ProductService productService;
     @Autowired
     private ProductController productController;
 
@@ -36,17 +39,20 @@ class ProductControllerTest {
     void setup() {
         list.add(product1);
         list.add(product2);
-        when(productRepository.save(product1)).thenReturn(product1);
-        when(productRepository.findAll()).thenReturn(list);
-        when(productRepository.findById(product1.getId())).thenReturn(Optional.ofNullable(product1));
-        doNothing().when(productRepository).deleteById(product1.getId());
-        doNothing().when(productRepository).deleteAll();
+
+        when(productService.createProduct(product1)).thenReturn(product1);
+        when(productService.getAllProducts()).thenReturn(list);
+        when(productService.getProductByID(product1.getId())).thenReturn(Optional.ofNullable(product1));
+
     }
 
     @Test
     void createProduct() {
+        when(productService.createProduct(any())).thenReturn(product1);
         ResponseEntity<Product> res = productController.createProduct(product1);
         assertEquals(res.getBody(), product1);
+
+
     }
 
     @Test

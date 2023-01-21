@@ -28,7 +28,7 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
         try {
-            Product _product = productService.createProduct(new Product(product.getName(), product.getDescription(),product.getImage(), product.getMinPrice(), product.getExpectedPrice(), product.getExpectedDeliveryTimeInDays()));
+            Product _product = productService.createProduct(new Product(product.getUserId(),product.getName(), product.getDescription(),product.getImage(), product.getMinPrice(), product.getExpectedPrice(), product.getExpectedDeliveryTimeInDays()));
             return new ResponseEntity<>(_product, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

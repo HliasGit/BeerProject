@@ -48,5 +48,7 @@ public class Product {
         this.expectedPrice = expectedPrice;
         this.expectedDeliveryTimeInDays = expectedDeliveryTimeInDays;
     }
+
+
 }
 
