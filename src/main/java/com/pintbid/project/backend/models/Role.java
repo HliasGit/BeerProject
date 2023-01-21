@@ -1,11 +1,19 @@
 package com.pintbid.project.backend.models;
 
 import com.pintbid.project.backend.utils.ERole;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,27 +24,7 @@ public class Role {
 
   private ERole name;
 
-  public Role() {
-
-  }
-
   public Role(ERole name) {
-    this.name = name;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public ERole getName() {
-    return name;
-  }
-
-  public void setName(ERole name) {
     this.name = name;
   }
 }

@@ -1,14 +1,14 @@
 package com.pintbid.project.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +21,8 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -53,52 +55,11 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    /* Getters prepared for next logic implementation */
-    public Integer getId() {
-        return id;
-    }
-
-    @NotBlank
-    public String getFirstName() {
-        return firstName;
-    }
-
-    @NotBlank
-    public String getLastName() {
-        return lastName;
-    }
-
-    @NotBlank
-    public String getEmail() {
-        return email;
-    }
-
-    @NotBlank
-    public String getPassword() {
-        return password;
-    }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-    public String getUsername() {
-        return username;
-    }
-
-    /* Constructors */
-    public User(
-                @JsonProperty("First Name") String firstName,
-                @JsonProperty("Last Name") String lastName,
-                @JsonProperty("User name") String username,
-                @JsonProperty("Email") String email,
-                @JsonProperty("Password") String password){
+    public User(String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-    public User() {
-
     }
 }

@@ -39,13 +39,8 @@ public class Product {
     @NotNull(message = "Expected delivery time is mandatory")
     private Integer expectedDeliveryTimeInDays;
 
-    public Product(
-                   @JsonProperty("Name") String name,
-                   @JsonProperty("Description") String description,
-                   @JsonProperty("Image") String image,
-                   @JsonProperty("Min Price") Double minPrice,
-                   @JsonProperty("Expected Price") Double expectedPrice,
-                   @JsonProperty("Expected Delivery Time") Integer expectedDeliveryTimeInDays) {
+    public Product(Integer userId, String name, String description, String image, Double minPrice, Double expectedPrice, Integer expectedDeliveryTimeInDays) {
+        this.userId = userId;
         this.name = name;
         this.description = description;
         this.image = image;

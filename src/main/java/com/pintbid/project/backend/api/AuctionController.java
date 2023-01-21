@@ -61,6 +61,9 @@ public class AuctionController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+      //  return auctionData.map(auction -> new ResponseEntity<>(auction, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
     }
 
     @PutMapping(path = "/{id}")
@@ -101,5 +104,32 @@ public class AuctionController {
         }
     }
 
+    @GetMapping(path = "/category/{category}")
+    public ResponseEntity<Auction> selectAuctionCategory(@PathVariable("category") Integer id) {
+
+        Optional<Auction> auctionData = auctionService.selectAuctionById(id);
+        if (auctionData.isPresent()) {
+            return new ResponseEntity<>(auctionData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        //  return auctionData.map(auction -> new ResponseEntity<>(auction, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+    }
+
+    @GetMapping(path = "/date/{endDate}")
+    public ResponseEntity<Auction> selectAuctionByEndDate(@PathVariable("endDate") Integer id) {
+
+        Optional<Auction> auctionData = auctionService.selectAuctionById(id);
+        if (auctionData.isPresent()) {
+            return new ResponseEntity<>(auctionData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        //  return auctionData.map(auction -> new ResponseEntity<>(auction, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+    }
 
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping("api/users")
 @RestController
 public class UserController {
