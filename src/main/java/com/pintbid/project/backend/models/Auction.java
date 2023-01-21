@@ -1,8 +1,8 @@
 package com.pintbid.project.backend.models;
 
 
-import com.pintbid.project.backend.utils.EAuctionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.pintbid.project.backend.utils.EAuctionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,33 +43,20 @@ public class Auction {
     private LocalDate startDate;
     @NotNull(message = "Auction End date is mandatory")
     private LocalDate endDate;
+    private Integer buyerId;
+    private Integer sellerId;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EAuctionStatus EAuctionStatus;
 
-    private Integer buyerId;
-    private Integer sellerId;
 
     private Integer productId;
     private String category;
 
-
-    /* Constructors */
-
-    public Auction(@JsonProperty("Title")String title,
-                   @JsonProperty("Description")String desrciption,
-                   @JsonProperty("Minimum price")Double minPrice,
-                   @JsonProperty("Maximum price")Double maxPrice,
-                   @JsonProperty("Date Of Start")LocalDate startDate,
-                   @JsonProperty("Date Of End")LocalDate endDate,
-                   @JsonProperty("Buyer Id") Integer buyerId,
-                   @JsonProperty("Seller Id") Integer sellerId,
-                   @JsonProperty("Active") EAuctionStatus EAuctionStatus,
-                   @JsonProperty("ProductId") Integer productId,
-                   @JsonProperty("Category")String category) {
+    public Auction(String title, String description, double minPrice, double maxPrice, LocalDate startDate, LocalDate endDate, Integer buyerId, Integer sellerId, com.pintbid.project.backend.utils.EAuctionStatus EAuctionStatus, Integer productId, String category) {
         this.title = title;
-        this.description = desrciption;
+        this.description = description;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.startDate = startDate;

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -44,9 +45,9 @@ class OfferControllerTest {
         when(offerService.deleteOfferById(offer1.getId())).thenReturn(true);
     }
 
-    //TODO FIX THIS
     @Test
     void createOffer() {
+        when(offerService.addOffer(any())).thenReturn(offer1);
         ResponseEntity<Offer> res = offerController.createOffer(offer1);
         assertEquals(res.getBody(), offer1);
     }

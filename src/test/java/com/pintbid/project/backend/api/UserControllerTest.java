@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -53,10 +54,9 @@ class UserControllerTest {
         ResponseEntity<User> res = userController.selectUserById(user1.getId());
         assertEquals(res.getBody(), user1);
     }
-
-    //TODO NEED TO BE FIXED
     @Test
     void createUser() {
+        when(userService.addUser(any())).thenReturn(user1);
         ResponseEntity<User> res = userController.createUser(user1);
         assertEquals(res.getBody(), user1);
     }

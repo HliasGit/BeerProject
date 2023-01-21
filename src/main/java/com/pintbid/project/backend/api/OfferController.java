@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("api/offers")
 public class OfferController {
@@ -28,7 +29,7 @@ public class OfferController {
 
         try {
             Offer _offer = offerService
-                    .updateOfferById(offer.getId(), new Offer(offer.getOfferingPrice(), offer.getUser(), offer.getAuction(), offer.isAccepted()));
+                    .addOffer(new Offer(offer.getOfferingPrice(), offer.getUserId(), offer.getAuctionId(), offer.isAccepted()));
             return new ResponseEntity<>(_offer, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
