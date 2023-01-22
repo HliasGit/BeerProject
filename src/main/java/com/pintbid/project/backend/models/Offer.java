@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Table(name = "OFFERS")
 @Entity
@@ -30,14 +31,21 @@ public class Offer {
 
     private boolean accepted;
 
+    private Integer quantity;
+
+    private LocalDate deliveryDate;
 
     public Offer(double offeringPrice,
                  Integer userId,
                  Integer auctionId,
-                 boolean accepted) {
+                 boolean accepted,
+                 Integer quantity,
+                 LocalDate deliveryDate) {
         this.offeringPrice = offeringPrice;
         this.userId = userId;
         this.auctionId = auctionId;
         this.accepted = accepted;
+        this.quantity = quantity;
+        this.deliveryDate = deliveryDate;
     }
 }
