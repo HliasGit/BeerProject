@@ -62,8 +62,7 @@ public class StorageService {
 
     private File convertMultiPartFileToFile(MultipartFile file) {
         File convertedFile = new File(file.getOriginalFilename());
-        try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
-            fos.write(file.getBytes());
+        try (FileOutputStream fos = new FileOutputStream(convertedFile)) {fos.write(file.getBytes());
         } catch (IOException e) {
             log.error("Error converting multipartFile to file", e);
         }
