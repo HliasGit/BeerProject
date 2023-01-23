@@ -1,4 +1,4 @@
-package com.pintbid.project.backend.security.jwt;
+package com.pintbid.project.backend.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

@@ -8,7 +8,7 @@ import com.pintbid.project.backend.payload.response.MessageResponse;
 import com.pintbid.project.backend.payload.response.UserInfoResponse;
 import com.pintbid.project.backend.repository.RoleRepository;
 import com.pintbid.project.backend.repository.UserRepository;
-import com.pintbid.project.backend.security.jwt.JwtUtils;
+import com.pintbid.project.backend.security.JwtUtils;
 import com.pintbid.project.backend.security.services.UserDetailsImpl;
 import com.pintbid.project.backend.utils.ERole;
 import org.springframework.beans.factory.annotation.Autowired;
