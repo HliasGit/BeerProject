@@ -43,6 +43,7 @@ class ProductControllerTest {
         when(productService.createProduct(product1)).thenReturn(product1);
         when(productService.getAllProducts()).thenReturn(list);
         when(productService.getProductByID(product1.getId())).thenReturn(Optional.ofNullable(product1));
+        when(productService.getAllProductsByName("Test")).thenReturn(list);
 
     }
     @Test
@@ -74,6 +75,7 @@ class ProductControllerTest {
 
     @Test
     void updateProduct() {
+        when(productService.getProductByID(any())).thenReturn(Optional.ofNullable(product1));
         ResponseEntity<Product> res = productController.updateProduct(product1.getId(), product2);
         assertEquals(res.getBody(), product1);
     }
@@ -82,5 +84,11 @@ class ProductControllerTest {
     void deleteAllTProducts() {
         ResponseEntity<HttpStatus> res = productController.deleteAllTProducts();
         assertEquals(res.getStatusCode(), HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    void getAllProductsByName(){
+        ResponseEntity<List<Product>> res = productController.getAllProductsByName("Test");
+        assertEquals(res.getBody().get(0), product1);
     }
 }
