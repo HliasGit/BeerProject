@@ -1,7 +1,5 @@
 package com.pintbid.project.backend.security;
 
-import com.pintbid.project.backend.security.jwt.AuthEntryPointJwt;
-import com.pintbid.project.backend.security.jwt.AuthTokenFilter;
 import com.pintbid.project.backend.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.pintbid.project.backend.security.jwt;
+package com.pintbid.project.backend.security;
 
 import com.pintbid.project.backend.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class UserServiceTest {
@@ -31,6 +31,8 @@ class UserServiceTest {
 
     @BeforeEach
     void setUp(){
+        doNothing().when(userRepository).deleteById(user1.getId());
+        doNothing().when(userRepository).deleteAll();
         userList.add(user1);
         userList.add(user2);
     }
@@ -66,5 +68,17 @@ class UserServiceTest {
         user1.setFirstName(newName);
         User result = userService.updateUser(user1);
         assertEquals("Lucia", result.getFirstName());
+    }
+
+    @Test
+    public void testDeleteUserByID(){
+        userService.deleteUserById(user1.getId());
+        verify(userRepository).deleteById(user1.getId());
+    }
+
+    @Test
+    public void testDeleteAllUsers(){
+        userService.deleteAllUsers();
+        verify(userRepository).deleteAll();
     }
 }
