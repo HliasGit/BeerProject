@@ -1,5 +1,6 @@
 package com.pintbid.project.backend.api;
 
+import com.pintbid.project.backend.models.Auction;
 import com.pintbid.project.backend.models.Offer;
 import com.pintbid.project.backend.services.OfferService;
 import org.aspectj.lang.annotation.Before;
@@ -75,5 +76,22 @@ class OfferControllerTest {
     void deleteOfferById() {
         ResponseEntity<Boolean> res = offerController.deleteOfferById(offer1.getId());
         assertEquals(res.getStatusCode(), HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    void offerByIDNotFound(){
+        Offer offerNotFound = new Offer();
+        offerNotFound.setId(13);
+        ResponseEntity<Offer> res = offerController.updateOfferById(offerNotFound.getId(), offer1);
+        assertEquals(res.getStatusCode(),HttpStatus.NOT_FOUND);
+    }
+
+    @Test
+    void testSelectOfferByID_NotFound(){
+        Offer not_found = new Offer();
+        not_found.setId(13);
+        when(offerService.selectOfferById(13)).thenReturn(Optional.empty());
+        ResponseEntity<Offer> res = offerController.selectOfferById(not_found.getId());
+        assertEquals(res.getStatusCode(),HttpStatus.NOT_FOUND);
     }
 }
