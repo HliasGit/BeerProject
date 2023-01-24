@@ -15,10 +15,13 @@ import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -79,5 +82,94 @@ class AuctionControllerTest {
     void deleteAuctionById() {
         ResponseEntity<Boolean> res = auctionController.deleteAuctionById(auction1.getId());
         assertEquals(res.getStatusCode(), HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    void testSelectAuctionByCategory_Success() {
+        Auction a1 = new Auction();
+        a1.setCategory(EAuctionCategory.WINE);
+        Auction a2 = new Auction();
+        a2.setCategory(EAuctionCategory.BEER);
+        when(auctionService.selectAllAuctions()).thenReturn(Arrays.asList(a1, a2));
+
+        ResponseEntity<List<Auction>> response = auctionController.selectAuctionByCategory(EAuctionCategory.WINE);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+        assertEquals(EAuctionCategory.WINE, response.getBody().get(0).getCategory());
+    }
+
+    @Test
+    void testSelectAuctionByCategory_NotFound() {
+        Auction a1 = new Auction();
+        a1.setCategory(EAuctionCategory.WINE);
+        Auction a2 = new Auction();
+        a2.setCategory(EAuctionCategory.BEER);
+        when(auctionService.selectAllAuctions()).thenReturn(Arrays.asList(a1, a2));
+
+        ResponseEntity<List<Auction>> response = auctionController.selectAuctionByCategory(EAuctionCategory.PACKAGE_OF_WINE);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    void testSelectAuctionByStatus_Success() {
+        Auction a1 = new Auction();
+        a1.setEAuctionStatus(EAuctionStatus.LOCKED);
+        Auction a2 = new Auction();
+        a2.setEAuctionStatus(EAuctionStatus.ACTIVE);
+        when(auctionService.selectAllAuctions()).thenReturn(Arrays.asList(a1, a2));
+
+        ResponseEntity<List<Auction>> response = auctionController.selectAuctionByStatus(EAuctionStatus.LOCKED);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+        assertEquals(EAuctionStatus.LOCKED, response.getBody().get(0).getEAuctionStatus());
+    }
+
+    @Test
+    void testSelectAuctionByStatus_NotFound() {
+        Auction a1 = new Auction();
+        a1.setEAuctionStatus(EAuctionStatus.LOCKED);
+        Auction a2 = new Auction();
+        a2.setEAuctionStatus(EAuctionStatus.ACTIVE);
+        when(auctionService.selectAllAuctions()).thenReturn(Arrays.asList(a1, a2));
+
+        ResponseEntity<List<Auction>> response = auctionController.selectAuctionByStatus(EAuctionStatus.CLOSED);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    void testSelectByEndDate_Success() {
+        LocalDate endDate1 = LocalDate.of(2022, 1, 1);
+        LocalDate endDate2 = LocalDate.of(2022, 2, 2);
+        Auction a1 = new Auction();
+        a1.setEndDate(endDate1);
+        Auction a2 = new Auction();
+        a2.setEndDate(endDate2);
+        when(auctionService.selectAllAuctions()).thenReturn(Arrays.asList(a1, a2));
+
+        ResponseEntity<List<Auction>> response = auctionController.selectByEndDate(endDate1);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+        assertEquals(endDate1, response.getBody().get(0).getEndDate());
+    }
+
+    @Test
+    void testSelectByEndDate_NotFound() {
+        LocalDate endDate1 = LocalDate.of(2022, 1, 1);
+        LocalDate endDate2 = LocalDate.of(2022, 2, 2);
+        LocalDate endDateNotUsed = LocalDate.of(2021,3,4);
+        Auction a1 = new Auction();
+        a1.setEndDate(endDate1);
+        Auction a2 = new Auction();
+        a2.setEndDate(endDate2);
+        when(auctionService.selectAllAuctions()).thenReturn(Arrays.asList(a1, a2));
+
+        ResponseEntity<List<Auction>> response = auctionController.selectByEndDate(endDateNotUsed);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }
