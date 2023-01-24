@@ -106,6 +106,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @DeleteMapping()
     public ResponseEntity<HttpStatus> deleteAllTProducts() {
         try {
@@ -114,6 +115,5 @@ public class ProductController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 }

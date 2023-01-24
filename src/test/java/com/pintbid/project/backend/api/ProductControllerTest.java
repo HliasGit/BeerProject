@@ -20,8 +20,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class ProductControllerTest {
@@ -67,17 +66,33 @@ class ProductControllerTest {
         assertEquals(res.getBody(), product1);
     }
 
-    @Test //TODO IS RIGHT TO BE BOOLEAN AND NOT HTTP?
-    void deleteProduct() {
-        ResponseEntity<Boolean> res = productController.deleteProduct(product1.getId());
-        assertEquals(res.getStatusCode(), HttpStatus.NO_CONTENT);
+    @Test
+    void testDeleteAllTProducts_Success() {
+        ResponseEntity<HttpStatus> response = productController.deleteAllTProducts();
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
     @Test
-    void updateProduct() {
-        when(productService.getProductByID(any())).thenReturn(Optional.ofNullable(product1));
-        ResponseEntity<Product> res = productController.updateProduct(product1.getId(), product2);
-        assertEquals(res.getBody(), product1);
+    void testUpdateProduct_Success() {
+        Product p = new Product();
+        p.setId(1);
+
+        when(productService.getProductByID(1)).thenReturn(Optional.of(p));
+        when(productService.updateProduct(1, p)).thenReturn(p);
+
+        ResponseEntity<Product> response = productController.updateProduct(1, p);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    void testUpdateProduct_NotFound() {
+        when(productService.getProductByID(100)).thenReturn(Optional.empty());
+
+        ResponseEntity<Product> response = productController.updateProduct(100, new Product());
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
