@@ -66,6 +66,7 @@ public class AuthController {
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
                 .body(new UserInfoResponse(userDetails.getId(),
+                        userDetails.getBlocked(),
                         userDetails.getFirstname(),
                         userDetails.getLastname(),
                         userDetails.getUsername(),

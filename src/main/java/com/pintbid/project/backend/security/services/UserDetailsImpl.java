@@ -15,6 +15,8 @@ public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
+    private Boolean isBlocked;
     private String firstname;
 
     private String lastname;
@@ -29,9 +31,10 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Integer id, String firstname, String username, String lastname, String email, String password,
+    public UserDetailsImpl(Integer id, Boolean isBlocked, String firstname, String username, String lastname, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
+        this.isBlocked = isBlocked;
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
@@ -47,6 +50,7 @@ public class UserDetailsImpl implements UserDetails {
 
         return new UserDetailsImpl(
                 user.getId(),
+                user.getIsBlocked(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
@@ -114,5 +118,13 @@ public class UserDetailsImpl implements UserDetails {
             return false;
         UserDetailsImpl user = (UserDetailsImpl) o;
         return Objects.equals(id, user.id);
+    }
+
+    public Boolean getBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(Boolean blocked) {
+        isBlocked = blocked;
     }
 }

@@ -51,7 +51,7 @@ class JwtUtilsTest {
         ReflectionTestUtils.setField(jwtUtils, "jwtCookie", "CookieName");
         List<GrantedAuthority> list = new ArrayList<>();
         list.add(new SimpleGrantedAuthority("ROLE_USER"));
-        UserDetailsImpl user = new UserDetailsImpl(12, "John", "Johnny", "Test", "email", "password", list);
+        UserDetailsImpl user = new UserDetailsImpl(12, false, "John", "Johnny", "Test", "email", "password", list);
         ResponseCookie res = jwtUtils.generateJwtCookie(user);
         assertEquals("CookieName",res.getName());
     }

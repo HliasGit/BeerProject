@@ -48,7 +48,7 @@ class AuthTokenFilterTest {
     @BeforeEach
     void setup(){
         list.add(new SimpleGrantedAuthority("ROLE_USER"));
-        user = new UserDetailsImpl(14, "Name", "Username", "Lastname", "email", "password", list);
+        user = new UserDetailsImpl(14, false, "Name", "Username", "Lastname", "email", "password", list);
         request.setCookies(cookie);
         when(jwtUtils.getUserNameFromJwtToken(any())).thenReturn("UserNameFromToken");
         when(jwtUtils.validateJwtToken(any())).thenReturn(true);

@@ -74,6 +74,7 @@ public class UserController {
 
         if (userData.isPresent()) {
             User _user = userData.get();
+            _user.setIsBlocked(user.getIsBlocked());
             _user.setFirstName(user.getFirstName());
             _user.setLastName(user.getLastName());
             _user.setUsername(user.getUsername());

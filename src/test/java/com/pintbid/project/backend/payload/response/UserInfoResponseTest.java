@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UserInfoResponseTest {
 
-    private UserInfoResponse info = new UserInfoResponse(1, "Name", "Last", "User", "email", Arrays.asList(new String("ROLE_USER")));
+    private UserInfoResponse info = new UserInfoResponse(1, false,"Name", "Last", "User", "email", Arrays.asList(new String("ROLE_USER")));
 
     @Test
     public void testAll(){

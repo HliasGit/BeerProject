@@ -96,7 +96,7 @@ class AuthControllerTest {
         List<GrantedAuthority> list = new ArrayList<>();
         list.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        UserDetailsImpl userDetails = new UserDetailsImpl(1, "John", "testUser", "Doe", "testuser@test.com", "password", list);
+        UserDetailsImpl userDetails = new UserDetailsImpl(1, false, "John", "testUser", "Doe", "testuser@test.com", "password", list);
 
         when(authentication.getPrincipal()).thenReturn(userDetails);
 
