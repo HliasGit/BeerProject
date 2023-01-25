@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 import java.util.Set;
  
 public class SignupRequest {
+    Boolean isBlocked = false;
     @NotBlank
     @Size(min = 3, max = 20)
     private String firstname;
@@ -74,5 +75,13 @@ public class SignupRequest {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Boolean getBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(Boolean blocked) {
+        isBlocked = blocked;
     }
 }

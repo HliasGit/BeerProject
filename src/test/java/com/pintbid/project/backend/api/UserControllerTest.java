@@ -23,8 +23,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class UserControllerTest {
 
-    User user1 = new User("Name", "Surname", "Username", "Email", "Password");
-    User user2 = new User("Name2", "Surname", "Username", "Email", "Password");
+    User user1 = new User(false, "Name", "Surname", "Username", "Email", "Password");
+    User user2 = new User(false, "Name2", "Surname", "Username", "Email", "Password");
     List<User> list = new ArrayList<>();
 
     @Autowired

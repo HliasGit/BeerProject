@@ -29,6 +29,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+   private Boolean isBlocked;
+
     @NotBlank(message = "First is mandatory")
     @Size(min = 2, max = 15)
     private String firstName;
@@ -55,7 +57,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String firstName, String lastName, String username, String email, String password) {
+    public User(Boolean isBlocked, String firstName, String lastName, String username, String email, String password) {
+        this.isBlocked = isBlocked;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;

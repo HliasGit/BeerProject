@@ -51,7 +51,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User _user = userService
-                    .addUser(new User(user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail(), user.getPassword()));
+                    .addUser(new User(user.getIsBlocked(),user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail(), user.getPassword()));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

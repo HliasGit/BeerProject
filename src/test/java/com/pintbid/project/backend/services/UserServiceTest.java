@@ -19,8 +19,8 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 class UserServiceTest {
 
-    User user1 = new User("Ciao", "Vaffanculo", "userCiao","ciaostrono@gmail.com", "password");
-    User user2 =new User("Cane", "Stuffs","userCane", "afasano@gmail.com", "password");
+    User user1 = new User(false, "Ciao", "Vaffanculo", "userCiao","ciaostrono@gmail.com", "password");
+    User user2 =new User(false, "Cane", "Stuffs","userCane", "afasano@gmail.com", "password");
     List<User> userList = new ArrayList<>();
 
     @Autowired
